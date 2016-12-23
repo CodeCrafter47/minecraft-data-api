@@ -1,0 +1,38 @@
+/*
+ * Copyright (C) 2016 Florian Stober
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+allprojects {
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+    dependencies {
+        compileOnly group: 'net.md-5', name: 'bungeecord-api', version: "1.10-SNAPSHOT"
+        compile project(":api")
+    }
+}
+
+dependencies {
+    compile project(":bungee:api")
+    compile project(":bungee:bungeeperms2")
+    compile project(":bungee:bungeeperms3")
+    compile project(":bungee:bungeeonlinetime30")
+    compile project(":bungee:bungeeonlinetime31")
+    compile project(":bungee:bungeeonlinetime43")
+    compile project(":bungee:protocolsupportbungee")
+}
