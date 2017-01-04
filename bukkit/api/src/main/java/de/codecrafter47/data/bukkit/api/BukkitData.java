@@ -25,14 +25,6 @@ import de.codecrafter47.data.minecraft.api.MinecraftData;
 public class BukkitData implements DataKeyCatalogue {
 
     public final static DataKey<String> PlayerListName = new DataKey<>("bukkit:playerlistname", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<String> Vault_Prefix = new DataKey<>("bukkit:vault:prefix", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<String> Vault_Suffix = new DataKey<>("bukkit:vault:suffix", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<String> Vault_PermissionGroup = new DataKey<>("bukkit:vault:permgroup", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<Integer> Vault_PermissionGroupRank = new DataKey<>("bukkit:vault:permgrouprank", MinecraftData.SCOPE_PLAYER, TypeToken.INTEGER);
-    public final static DataKey<Integer> Vault_PermissionGroupWeight = new DataKey<>("bukkit:vault:permgroupweight", MinecraftData.SCOPE_PLAYER, TypeToken.INTEGER);
-    public final static DataKey<Double> Vault_Balance = new DataKey<>("bukkit:vault:balance", MinecraftData.SCOPE_PLAYER, TypeToken.DOUBLE);
-    public final static DataKey<String> Vault_PrimaryGroupPrefix = new DataKey<>("bukkit:vault:primarygroupprefix", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<String> Vault_PlayerPrefix = new DataKey<>("bukkit:vault:playerprefix", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
     public final static DataKey<Boolean> VanishNoPacket_IsVanished = new DataKey<>("bukkit:vanishnopacket:isvanished", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<Integer> PlayerPoints_Points = new DataKey<>("bukkit:playerpoints:points", MinecraftData.SCOPE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<String> Factions_FactionName = new DataKey<>("bukkit:factions:factionname", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
@@ -53,7 +45,4 @@ public class BukkitData implements DataKeyCatalogue {
     public final static DataKey<Boolean> Essentials_IsAFK = new DataKey<>("bukkit:essentials:isafk", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<String> Multiverse_WorldAlias = new DataKey<>("bukkit:multiverse:worldalias", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
 
-    // Bukkit server data keys
-    public final static DataKey<String> Vault_CurrencyNameSingular = new DataKey<>("bukkit:vault:currencynamesingular", MinecraftData.SCOPE_SERVER, TypeToken.STRING);
-    public final static DataKey<String> Vault_CurrencyNamePlural = new DataKey<>("bukkit:vault:currencynameplural", MinecraftData.SCOPE_SERVER, TypeToken.STRING);
 }

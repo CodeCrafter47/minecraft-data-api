@@ -16,7 +16,7 @@
  */
 
 group 'de.codecrafter47.data'
-version '1.0.0-SNAPSHOT'
+version '1.0.1-SNAPSHOT'
 
 buildscript {
     dependencies {

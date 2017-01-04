@@ -17,7 +17,6 @@
 
 package de.codecrafter47.data.bukkit;
 
-import de.codecrafter47.data.bukkit.api.BukkitData;
 import de.codecrafter47.data.bukkit.vault.VaultCurrencyNamePluralProvider;
 import de.codecrafter47.data.bukkit.vault.VaultCurrencyNameSingularProvider;
 import de.codecrafter47.data.minecraft.api.MinecraftData;
@@ -42,8 +41,8 @@ public class ServerDataAccess extends AbstractBukkitDataAccess<Server> {
         addProvider(MinecraftData.TPS, ServerTPSProvider.getInstance(plugin));
 
         if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
-            addProvider(BukkitData.Vault_CurrencyNamePlural, new VaultCurrencyNamePluralProvider());
-            addProvider(BukkitData.Vault_CurrencyNameSingular, new VaultCurrencyNameSingularProvider());
+            addProvider(MinecraftData.Economy_CurrencyNamePlural, new VaultCurrencyNamePluralProvider());
+            addProvider(MinecraftData.Economy_CurrencyNameSingular, new VaultCurrencyNameSingularProvider());
         }
     }
 

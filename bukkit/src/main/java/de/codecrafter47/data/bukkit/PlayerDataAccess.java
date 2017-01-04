@@ -69,14 +69,14 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
         addProvider(MinecraftData.World, player -> player.getWorld().getName());
 
         if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
-            addProvider(BukkitData.Vault_Balance, new VaultBalanceProvider(plugin));
-            addProvider(BukkitData.Vault_PermissionGroup, new VaultGroupProvider());
-            addProvider(BukkitData.Vault_PermissionGroupWeight, new VaultGroupWeightProvider());
-            addProvider(BukkitData.Vault_PermissionGroupRank, new VaultGroupRankProvider());
-            addProvider(BukkitData.Vault_Prefix, new VaultPrefixProvider());
-            addProvider(BukkitData.Vault_Suffix, new VaultSuffixProvider());
-            addProvider(BukkitData.Vault_PrimaryGroupPrefix, new VaultPrimaryGroupPrefixProvider());
-            addProvider(BukkitData.Vault_PlayerPrefix, new VaultPlayerPrefixProvider());
+            addProvider(MinecraftData.Economy_Balance, new VaultBalanceProvider(plugin));
+            addProvider(MinecraftData.Permissions_PermissionGroup, new VaultGroupProvider());
+            addProvider(MinecraftData.Permissions_PermissionGroupWeight, new VaultGroupWeightProvider());
+            addProvider(MinecraftData.Permissions_PermissionGroupRank, new VaultGroupRankProvider());
+            addProvider(MinecraftData.Permissions_Prefix, new VaultPrefixProvider());
+            addProvider(MinecraftData.Permissions_Suffix, new VaultSuffixProvider());
+            addProvider(MinecraftData.Permissions_PrimaryGroupPrefix, new VaultPrimaryGroupPrefixProvider());
+            addProvider(MinecraftData.Permissions_PlayerPrefix, new VaultPlayerPrefixProvider());
         }
 
         if (Bukkit.getPluginManager().getPlugin("VanishNoPacket") != null) {

@@ -17,23 +17,8 @@
 
 package de.codecrafter47.data.sponge.api;
 
-import de.codecrafter47.data.api.DataKey;
 import de.codecrafter47.data.api.DataKeyCatalogue;
-import de.codecrafter47.data.api.TypeToken;
-import de.codecrafter47.data.minecraft.api.MinecraftData;
 
 public class SpongeData implements DataKeyCatalogue {
 
-    // Player data
-    public final static DataKey<String> Prefix = new DataKey<>("sponge:prefix", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<String> Suffix = new DataKey<>("sponge:suffix", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<String> PermissionGroup = new DataKey<>("sponge:permgroup", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
-    public final static DataKey<Integer> PermissionGroupRank = new DataKey<>("sponge:permgrouprank", MinecraftData.SCOPE_PLAYER, TypeToken.INTEGER);
-    public final static DataKey<Integer> PermissionGroupWeight = new DataKey<>("sponge:permgroupweight", MinecraftData.SCOPE_PLAYER, TypeToken.INTEGER);
-
-    public final static DataKey<Double> Balance = new DataKey<>("sponge:balance", MinecraftData.SCOPE_PLAYER, TypeToken.DOUBLE);
-
-    // Server data
-    public final static DataKey<String> CurrencyNameSingular = new DataKey<>("sponge:currencynamesingular", MinecraftData.SCOPE_SERVER, TypeToken.STRING);
-    public final static DataKey<String> CurrencyNamePlural = new DataKey<>("sponge:currencynameplural", MinecraftData.SCOPE_SERVER, TypeToken.STRING);
 }

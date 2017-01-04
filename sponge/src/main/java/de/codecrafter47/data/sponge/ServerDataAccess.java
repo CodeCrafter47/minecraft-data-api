@@ -18,7 +18,6 @@
 package de.codecrafter47.data.sponge;
 
 import de.codecrafter47.data.minecraft.api.MinecraftData;
-import de.codecrafter47.data.sponge.api.SpongeData;
 import org.slf4j.Logger;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
@@ -34,7 +33,7 @@ public class ServerDataAccess extends AbstractSpongeDataAccess<Server> {
         addProvider(MinecraftData.ServerModVersion, server -> Sponge.getGame().getPlatform().getImplementation().getVersion().orElse(null));
         addProvider(MinecraftData.TPS, Server::getTicksPerSecond);
 
-        addProvider(SpongeData.CurrencyNamePlural, server -> Sponge.getGame().getServiceManager().provide(EconomyService.class).map(e -> e.getDefaultCurrency().getPluralDisplayName().toPlain()).orElse(null));
-        addProvider(SpongeData.CurrencyNameSingular, server -> Sponge.getGame().getServiceManager().provide(EconomyService.class).map(e -> e.getDefaultCurrency().getDisplayName().toPlain()).orElse(null));
+        addProvider(MinecraftData.Economy_CurrencyNamePlural, server -> Sponge.getGame().getServiceManager().provide(EconomyService.class).map(e -> e.getDefaultCurrency().getPluralDisplayName().toPlain()).orElse(null));
+        addProvider(MinecraftData.Economy_CurrencyNameSingular, server -> Sponge.getGame().getServiceManager().provide(EconomyService.class).map(e -> e.getDefaultCurrency().getDisplayName().toPlain()).orElse(null));
     }
 }

@@ -18,7 +18,6 @@
 package de.codecrafter47.data.sponge;
 
 import de.codecrafter47.data.minecraft.api.MinecraftData;
-import de.codecrafter47.data.sponge.api.SpongeData;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
@@ -47,12 +46,12 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
         addProvider(MinecraftData.DisplayName, player -> player.getDisplayNameData().displayName().get().toPlain());
         addProvider(MinecraftData.World, player -> player.getWorld().getName());
 
-        addProvider(SpongeData.Balance, player -> Sponge.getGame().getServiceManager().provide(EconomyService.class).flatMap(e -> e.getOrCreateAccount(player.getUniqueId()).map(a -> a.getBalance(e.getDefaultCurrency(), player.getActiveContexts()).doubleValue())).orElse(null));
+        addProvider(MinecraftData.Economy_Balance, player -> Sponge.getGame().getServiceManager().provide(EconomyService.class).flatMap(e -> e.getOrCreateAccount(player.getUniqueId()).map(a -> a.getBalance(e.getDefaultCurrency(), player.getActiveContexts()).doubleValue())).orElse(null));
 
-        addProvider(SpongeData.PermissionGroup, player -> player.getParents().stream().filter(subject -> subject.getContainingCollection().getIdentifier().equals(PermissionService.SUBJECTS_GROUP)).findFirst().map(Contextual::getIdentifier).orElse(null));
-        addProvider(SpongeData.PermissionGroupRank, player -> player.getOption("rank").map(Integer::parseInt).orElse(null));
-        addProvider(SpongeData.PermissionGroupWeight, player -> player.getOption("weight").map(Integer::parseInt).orElse(null));
-        addProvider(SpongeData.Prefix, player -> player.getOption("prefix").orElse(null));
-        addProvider(SpongeData.Suffix, player -> player.getOption("suffix").orElse(null));
+        addProvider(MinecraftData.Permissions_PermissionGroup, player -> player.getParents().stream().filter(subject -> subject.getContainingCollection().getIdentifier().equals(PermissionService.SUBJECTS_GROUP)).findFirst().map(Contextual::getIdentifier).orElse(null));
+        addProvider(MinecraftData.Permissions_PermissionGroupRank, player -> player.getOption("rank").map(Integer::parseInt).orElse(null));
+        addProvider(MinecraftData.Permissions_PermissionGroupWeight, player -> player.getOption("weight").map(Integer::parseInt).orElse(null));
+        addProvider(MinecraftData.Permissions_Prefix, player -> player.getOption("prefix").orElse(null));
+        addProvider(MinecraftData.Permissions_Suffix, player -> player.getOption("suffix").orElse(null));
     }
 }

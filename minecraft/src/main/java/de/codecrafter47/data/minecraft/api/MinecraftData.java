@@ -24,10 +24,18 @@ import de.codecrafter47.data.api.TypeToken;
 
 public class MinecraftData implements DataKeyCatalogue {
     public final static Scope SCOPE_PLAYER = new Scope("minecraft:player");
-    public final static DataKey<String> DisplayName = new DataKey<>("minecraft:displayname", SCOPE_PLAYER, TypeToken.STRING);
     public final static Scope SCOPE_SERVER = new Scope("minecraft:server");
 
     // Player data keys
+    public final static DataKey<String> Permissions_PlayerPrefix = new DataKey<>("minecraft:permissions:playerprefix", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> Permissions_PrimaryGroupPrefix = new DataKey<>("minecraft:permissions:primarygroupprefix", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<Double> Economy_Balance = new DataKey<>("minecraft:economy:balance", SCOPE_PLAYER, TypeToken.DOUBLE);
+    public final static DataKey<Integer> Permissions_PermissionGroupWeight = new DataKey<>("minecraft:permissions:permgroupweight", SCOPE_PLAYER, TypeToken.INTEGER);
+    public final static DataKey<Integer> Permissions_PermissionGroupRank = new DataKey<>("minecraft:permissions:permgrouprank", SCOPE_PLAYER, TypeToken.INTEGER);
+    public final static DataKey<String> Permissions_PermissionGroup = new DataKey<>("minecraft:permissions:permgroup", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> Permissions_Suffix = new DataKey<>("minecraft:permissions:suffix", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> Permissions_Prefix = new DataKey<>("minecraft:permissions:prefix", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> DisplayName = new DataKey<>("minecraft:displayname", SCOPE_PLAYER, TypeToken.STRING);
     public final static DataKey<Double> Health = new DataKey<>("minecraft:health", SCOPE_PLAYER, TypeToken.DOUBLE);
     public final static DataKey<String> World = new DataKey<>("bukkit:world", SCOPE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> Team = new DataKey<>("minecraft:team", SCOPE_PLAYER, TypeToken.STRING);
@@ -49,4 +57,6 @@ public class MinecraftData implements DataKeyCatalogue {
     public final static DataKey<String> MinecraftVersion = new DataKey<>("minecraft:version", MinecraftData.SCOPE_SERVER, TypeToken.STRING);
     public final static DataKey<String> ServerModName = new DataKey<>("minecraft:modname", MinecraftData.SCOPE_SERVER, TypeToken.STRING);
     public final static DataKey<String> ServerModVersion = new DataKey<>("minecraft:modversion", MinecraftData.SCOPE_SERVER, TypeToken.STRING);
+    public final static DataKey<String> Economy_CurrencyNamePlural = new DataKey<>("minecraft:economy:currencynameplural", SCOPE_SERVER, TypeToken.STRING);
+    public final static DataKey<String> Economy_CurrencyNameSingular = new DataKey<>("minecraft:economy:currencynamesingular", SCOPE_SERVER, TypeToken.STRING);
 }
