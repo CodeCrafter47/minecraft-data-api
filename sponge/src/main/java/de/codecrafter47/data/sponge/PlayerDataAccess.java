@@ -24,7 +24,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.Team;
+import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.service.economy.EconomyService;
+import org.spongepowered.api.service.permission.PermissionService;
 
 public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
 
@@ -47,7 +49,7 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
 
         addProvider(SpongeData.Balance, player -> Sponge.getGame().getServiceManager().provide(EconomyService.class).flatMap(e -> e.getOrCreateAccount(player.getUniqueId()).map(a -> a.getBalance(e.getDefaultCurrency(), player.getActiveContexts()).doubleValue())).orElse(null));
 
-        addProvider(SpongeData.PermissionGroup, player -> player.getOption("group").orElse(null));
+        addProvider(SpongeData.PermissionGroup, player -> player.getParents().stream().filter(subject -> subject.getContainingCollection().getIdentifier().equals(PermissionService.SUBJECTS_GROUP)).findFirst().map(Contextual::getIdentifier).orElse(null));
         addProvider(SpongeData.PermissionGroupRank, player -> player.getOption("rank").map(Integer::parseInt).orElse(null));
         addProvider(SpongeData.PermissionGroupWeight, player -> player.getOption("weight").map(Integer::parseInt).orElse(null));
         addProvider(SpongeData.Prefix, player -> player.getOption("prefix").orElse(null));
