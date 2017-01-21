@@ -50,6 +50,10 @@ public class BungeeCordSessionDurationProvider implements Function<ProxiedPlayer
 
     @Override
     public Duration apply(ProxiedPlayer player) {
+        LocalDateTime joined = timeJoined.get(player);
+        if (joined != null) {
+            return Duration.between(joined, LocalDateTime.now());
+        }
         return null;
     }
 
