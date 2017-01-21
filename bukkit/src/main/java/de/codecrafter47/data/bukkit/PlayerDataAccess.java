@@ -18,6 +18,9 @@
 package de.codecrafter47.data.bukkit;
 
 import de.codecrafter47.data.bukkit.api.BukkitData;
+import de.codecrafter47.data.bukkit.askyblock.ASkyBlockIslandLevelProvider;
+import de.codecrafter47.data.bukkit.askyblock.ASkyBlockIslandNameProvider;
+import de.codecrafter47.data.bukkit.askyblock.ASkyBlockTeamLeaderProvider;
 import de.codecrafter47.data.bukkit.essentials.EssentialsIsAFKProvider;
 import de.codecrafter47.data.bukkit.essentials.EssentialsIsVanishedProvider;
 import de.codecrafter47.data.bukkit.factions.*;
@@ -131,6 +134,12 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
 
         if (Bukkit.getPluginManager().getPlugin("Multiverse-Core") != null) {
             addProvider(BukkitData.Multiverse_WorldAlias, new MultiverseWorldAliasProvider());
+        }
+
+        if (Bukkit.getPluginManager().getPlugin("ASkyBlock") != null) {
+            addProvider(BukkitData.ASkyBlock_IslandLevel, new ASkyBlockIslandLevelProvider());
+            addProvider(BukkitData.ASkyBlock_IslandName, new ASkyBlockIslandNameProvider());
+            addProvider(BukkitData.ASkyBlock_TeamLeader, new ASkyBlockTeamLeaderProvider());
         }
     }
 

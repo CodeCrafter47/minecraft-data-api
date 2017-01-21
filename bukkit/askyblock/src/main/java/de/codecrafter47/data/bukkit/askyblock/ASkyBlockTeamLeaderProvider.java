@@ -15,29 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = 'data-parent'
+package de.codecrafter47.data.bukkit.askyblock;
 
-include 'api'
-include 'minecraft'
-include 'bukkit'
-include 'bukkit:api'
-include 'bukkit:vault'
-include 'bukkit:vanishnopacket'
-include 'bukkit:supervanish'
-include 'bukkit:simpleclans'
-include 'bukkit:playerpoints'
-include 'bukkit:multiverse'
-include 'bukkit:factionsuuid'
-include 'bukkit:factions'
-include 'bukkit:essentials'
-include 'bukkit:askyblock'
-include 'bungee'
-include 'bungee:api'
-include 'bungee:bungeeperms2'
-include 'bungee:bungeeperms3'
-include 'bungee:bungeeonlinetime30'
-include 'bungee:bungeeonlinetime31'
-include 'bungee:bungeeonlinetime43'
-include 'bungee:protocolsupportbungee'
-include 'sponge'
-include 'sponge:api'
+import com.wasteofplastic.askyblock.ASkyBlock;
+import com.wasteofplastic.askyblock.ASkyBlockAPI;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+
+import java.util.UUID;
+import java.util.function.Function;
+
+public class ASkyBlockTeamLeaderProvider implements Function<Player, String> {
+    @Override
+    public String apply(Player player) {
+        ASkyBlockAPI api = ASkyBlockAPI.getInstance();
+        UUID teamLeader = api.getTeamLeader(player.getUniqueId());
+        return teamLeader != null ? ASkyBlock.getPlugin().getPlayers().getName(teamLeader) : null;
+    }
+}

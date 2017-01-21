@@ -41,4 +41,5 @@ dependencies {
     compile project(":bukkit:factionsuuid")
     compile project(":bukkit:factions")
     compile project(":bukkit:essentials")
+    compile project(":bukkit:askyblock")
 }

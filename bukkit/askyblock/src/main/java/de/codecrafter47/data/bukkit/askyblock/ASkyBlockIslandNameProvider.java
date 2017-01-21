@@ -15,29 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = 'data-parent'
+package de.codecrafter47.data.bukkit.askyblock;import com.wasteofplastic.askyblock.ASkyBlockAPI;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
-include 'api'
-include 'minecraft'
-include 'bukkit'
-include 'bukkit:api'
-include 'bukkit:vault'
-include 'bukkit:vanishnopacket'
-include 'bukkit:supervanish'
-include 'bukkit:simpleclans'
-include 'bukkit:playerpoints'
-include 'bukkit:multiverse'
-include 'bukkit:factionsuuid'
-include 'bukkit:factions'
-include 'bukkit:essentials'
-include 'bukkit:askyblock'
-include 'bungee'
-include 'bungee:api'
-include 'bungee:bungeeperms2'
-include 'bungee:bungeeperms3'
-include 'bungee:bungeeonlinetime30'
-include 'bungee:bungeeonlinetime31'
-include 'bungee:bungeeonlinetime43'
-include 'bungee:protocolsupportbungee'
-include 'sponge'
-include 'sponge:api'
+import java.util.function.Function;
+
+public class ASkyBlockIslandNameProvider implements Function<Player, String> {
+    @Override
+    public String apply(Player player) {
+        ASkyBlockAPI api = ASkyBlockAPI.getInstance();
+        Location islandLocation = api.getIslandLocation(player.getUniqueId());
+        if (islandLocation != null) {
+            return api.getIslandName(api.getIslandAt(islandLocation).getOwner());
+        }
+        return null;
+    }
+}

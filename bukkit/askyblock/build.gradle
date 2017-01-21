@@ -15,29 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = 'data-parent'
+repositories {
+    maven {
+        url "http://dl.bintray.com/tastybento/maven-repo"
+    }
+}
 
-include 'api'
-include 'minecraft'
-include 'bukkit'
-include 'bukkit:api'
-include 'bukkit:vault'
-include 'bukkit:vanishnopacket'
-include 'bukkit:supervanish'
-include 'bukkit:simpleclans'
-include 'bukkit:playerpoints'
-include 'bukkit:multiverse'
-include 'bukkit:factionsuuid'
-include 'bukkit:factions'
-include 'bukkit:essentials'
-include 'bukkit:askyblock'
-include 'bungee'
-include 'bungee:api'
-include 'bungee:bungeeperms2'
-include 'bungee:bungeeperms3'
-include 'bungee:bungeeonlinetime30'
-include 'bungee:bungeeonlinetime31'
-include 'bungee:bungeeonlinetime43'
-include 'bungee:protocolsupportbungee'
-include 'sponge'
-include 'sponge:api'
+dependencies {
+    compileOnly (group: "com.wasteofplastic", name: "askyblock", version: "3.0.5.4") {
+        exclude group: 'net.milkbowl.vault', module: 'VaultAPI'
+    }
+}
