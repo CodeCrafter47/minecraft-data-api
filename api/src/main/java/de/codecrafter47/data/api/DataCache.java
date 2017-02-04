@@ -37,7 +37,7 @@ public class DataCache implements DataHolder {
             cache.put(dataKey, object);
         }
         synchronized (listeners) {
-            listeners.get(dataKey).forEach(consumer -> ((Consumer<T>) consumer).accept(object));
+            listeners.get(dataKey).forEach(consumer -> ((DataChangeListener<T>) consumer).onChange(object));
         }
     }
 
