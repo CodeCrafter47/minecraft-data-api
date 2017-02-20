@@ -23,6 +23,10 @@ import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeP
 import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider43;
 import de.codecrafter47.data.bungee.bungeeperms2.*;
 import de.codecrafter47.data.bungee.bungeeperms3.*;
+import de.codecrafter47.data.bungee.luckperms.LuckPermsPrefixProvider;
+import de.codecrafter47.data.bungee.luckperms.LuckPermsPrimaryGroupProvider;
+import de.codecrafter47.data.bungee.luckperms.LuckPermsSuffixProvider;
+import de.codecrafter47.data.bungee.luckperms.LuckPermsWeightProvider;
 import de.codecrafter47.data.bungee.protocolsupportbungee.ProtocolSupportBungeeClientVersionProvider;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -88,6 +92,14 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             addProvider(BungeeData.BungeePerms_Rank, new BungeePermsRankProvider());
             addProvider(BungeeData.BungeePerms_PrimaryGroupPrefix, new BungeePermsGroupPrefixProvider());
             addProvider(BungeeData.BungeePerms_PlayerPrefix, new BungeePermsUserPrefixProvider());
+        }
+
+        p = ProxyServer.getInstance().getPluginManager().getPlugin("LuckPerms");
+        if (p != null) {
+            addProvider(BungeeData.LuckPerms_PrimaryGroup, new LuckPermsPrimaryGroupProvider());
+            addProvider(BungeeData.LuckPerms_Prefix, new LuckPermsPrefixProvider());
+            addProvider(BungeeData.LuckPerms_Suffix, new LuckPermsSuffixProvider());
+            addProvider(BungeeData.LuckPerms_Weight, new LuckPermsWeightProvider());
         }
 
         p = ProxyServer.getInstance().getPluginManager().getPlugin("BungeeOnlineTime");

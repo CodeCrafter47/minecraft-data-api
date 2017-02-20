@@ -39,6 +39,10 @@ public class BungeeData implements DataKeyCatalogue {
     public final static DataKey<Integer> BungeePerms_Rank = new DataKey<>("bungeeperms:rank", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<String> BungeePerms_PrimaryGroupPrefix = new DataKey<>("bungeeperms:primarygroupprefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> BungeePerms_PlayerPrefix = new DataKey<>("bungeeperms:playerprefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> LuckPerms_PrimaryGroup = new DataKey<>("luckperms:primarygroup", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> LuckPerms_Prefix = new DataKey<>("luckperms:prefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> LuckPerms_Suffix = new DataKey<>("luckperms:suffix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
+    public final static DataKey<Integer> LuckPerms_Weight = new DataKey<>("luckperms:weight", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<Duration> BungeeOnlineTime_OnlineTime = new DataKey<>("bungeeonlinetime:onlinetime", SCOPE_BUNGEE_PLAYER, TypeToken.DURATION);
     public final static DataKey<String> ClientVersion = new DataKey<>("minecraft:clientversion", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<Duration> BungeeCord_SessionDuration = new DataKey<>("minecraft:sessionduration", SCOPE_BUNGEE_PLAYER, TypeToken.DURATION);

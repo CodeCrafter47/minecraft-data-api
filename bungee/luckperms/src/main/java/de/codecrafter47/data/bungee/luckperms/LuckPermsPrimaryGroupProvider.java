@@ -15,25 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-allprojects {
-    repositories {
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
-    }
-    dependencies {
-        compileOnly group: 'net.md-5', name: 'bungeecord-api', version: "1.10-SNAPSHOT"
-        compile project(":api")
-    }
-}
+package de.codecrafter47.data.bungee.luckperms;
 
-dependencies {
-    compile project(":bungee:api")
-    compile project(":bungee:bungeeperms2")
-    compile project(":bungee:bungeeperms3")
-    compile project(":bungee:luckperms")
-    compile project(":bungee:bungeeonlinetime30")
-    compile project(":bungee:bungeeonlinetime31")
-    compile project(":bungee:bungeeonlinetime43")
-    compile project(":bungee:protocolsupportbungee")
+import me.lucko.luckperms.LuckPerms;
+import me.lucko.luckperms.api.LuckPermsApi;
+import me.lucko.luckperms.api.User;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+
+import java.util.function.Function;
+
+public class LuckPermsPrimaryGroupProvider implements Function<ProxiedPlayer, String> {
+
+    @Override
+    public String apply(ProxiedPlayer player) {
+        LuckPermsApi lp = LuckPerms.getApiSafe().orElse(null);
+        if (lp == null) {
+            return null;
+        }
+
+        User user = lp.getUserSafe(player.getUniqueId()).orElse(null);
+        if (user == null) {
+            return null;
+        }
+
+        return user.getPrimaryGroup();
+    }
 }
