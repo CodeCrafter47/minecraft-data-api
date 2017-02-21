@@ -15,25 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-allprojects {
-    repositories {
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
-    }
-    dependencies {
-        compileOnly group: 'net.md-5', name: 'bungeecord-api', version: "1.10-SNAPSHOT"
-        compile project(":api")
+repositories {
+    maven {
+        url "https://repo.lucko.me/"
     }
 }
 
 dependencies {
-    compile project(":bungee:api")
-    compile project(":bungee:bungeeperms2")
-    compile project(":bungee:bungeeperms3")
-    compile project(":bungee:luckperms")
-    compile project(":bungee:bungeeonlinetime30")
-    compile project(":bungee:bungeeonlinetime31")
-    compile project(":bungee:bungeeonlinetime43")
-    compile project(":bungee:protocolsupportbungee")
+    compileOnly group: "me.lucko.luckperms", name: "luckperms-api", version: "3.0"
 }
