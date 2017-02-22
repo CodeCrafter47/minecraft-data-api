@@ -23,6 +23,7 @@ import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeP
 import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider43;
 import de.codecrafter47.data.bungee.bungeeperms2.*;
 import de.codecrafter47.data.bungee.bungeeperms3.*;
+import de.codecrafter47.data.bungee.clans.*;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsPrefixProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsPrimaryGroupProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsSuffixProvider;
@@ -119,6 +120,15 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             addProvider(BungeeData.ClientVersion, new ProtocolSupportBungeeClientVersionProvider());
         } else {
             addProvider(BungeeData.ClientVersion, new BungeeClientVersionProvider());
+        }
+
+        p = ProxyServer.getInstance().getPluginManager().getPlugin("Clans");
+        if (p != null && isClassPresent("de.simonsator.partyandfriends.clan.api.ClansManager")) {
+            addProvider(BungeeData.PAFClans_ClanName, new ClansClanNameProvider());
+            addProvider(BungeeData.PAFClans_ClanTag, new ClansClanTagProvider());
+            addProvider(BungeeData.PAFClans_IsLeader, new ClansIsLeaderProvider());
+            addProvider(BungeeData.PAFClans_MemberCount, new ClansClanMembersProvider());
+            addProvider(BungeeData.PAFClans_OnlineMemberCount, new ClansClanOnlineMembersProvider());
         }
     }
 
