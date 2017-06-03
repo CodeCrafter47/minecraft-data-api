@@ -21,12 +21,7 @@ public interface DataHolder {
 
     <V> V get(DataKey<V> key);
 
-    <T> void addDataChangeListener(DataKey<T> key, DataChangeListener<T> listener);
+    <T> void addDataChangeListener(DataKey<T> key, Runnable listener);
 
-    <T> void removeDataChangeListener(DataKey<T> key, DataChangeListener<T> listener);
-
-    interface DataChangeListener<T> {
-
-        void onChange(T value);
-    }
+    <T> void removeDataChangeListener(DataKey<T> key, Runnable listener);
 }

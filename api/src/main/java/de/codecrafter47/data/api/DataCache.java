@@ -23,11 +23,10 @@ import com.google.common.collect.Multimaps;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Consumer;
 
 public class DataCache implements DataHolder {
     private final Map<DataKey<?>, Object> cache = new ConcurrentHashMap<>();
-    private final Multimap<DataKey<?>, DataChangeListener<?>> listeners = Multimaps.synchronizedMultimap(MultimapBuilder.hashKeys().hashSetValues().build());
+    private final Multimap<DataKey<?>, Runnable> listeners = Multimaps.synchronizedMultimap(MultimapBuilder.hashKeys().hashSetValues().build());
 
     @SuppressWarnings("unchecked")
     public <T> void updateValue(DataKey<T> dataKey, T object) {
@@ -37,7 +36,7 @@ public class DataCache implements DataHolder {
             cache.put(dataKey, object);
         }
         synchronized (listeners) {
-            listeners.get(dataKey).forEach(consumer -> ((DataChangeListener<T>) consumer).onChange(object));
+            listeners.get(dataKey).forEach(Runnable::run);
         }
     }
 
@@ -48,12 +47,12 @@ public class DataCache implements DataHolder {
     }
 
     @Override
-    public <T> void addDataChangeListener(DataKey<T> key, DataChangeListener<T> listener) {
+    public <T> void addDataChangeListener(DataKey<T> key, Runnable listener) {
         listeners.put(key, listener);
     }
 
     @Override
-    public <T> void removeDataChangeListener(DataKey<T> key, DataChangeListener<T> listener) {
+    public <T> void removeDataChangeListener(DataKey<T> key, Runnable listener) {
         listeners.remove(key, listener);
     }
 }
