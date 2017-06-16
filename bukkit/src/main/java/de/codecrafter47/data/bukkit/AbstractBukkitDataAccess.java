@@ -55,6 +55,7 @@ public abstract class AbstractBukkitDataAccess<B> extends AbstractDataAccess<B> 
     }
 
     private boolean isAsyncOpError(Throwable th) {
-        return th instanceof ConcurrentModificationException || th.getStackTrace()[0].getClassName().equals("org.spigotmc.AsyncCatcher") || (th.getCause() != null && isAsyncOpError(th.getCause()));
+        StackTraceElement[] st;
+        return th instanceof ConcurrentModificationException || ((st = th.getStackTrace()).length > 0 && st[0].getClassName().equals("org.spigotmc.AsyncCatcher")) || (th.getCause() != null && isAsyncOpError(th.getCause()));
     }
 }
