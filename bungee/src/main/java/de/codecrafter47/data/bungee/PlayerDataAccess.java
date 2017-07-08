@@ -21,6 +21,7 @@ import de.codecrafter47.data.bungee.api.BungeeData;
 import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider30;
 import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider31;
 import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider43;
+import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider53;
 import de.codecrafter47.data.bungee.bungeeperms2.*;
 import de.codecrafter47.data.bungee.bungeeperms3.*;
 import de.codecrafter47.data.bungee.clans.*;
@@ -111,8 +112,13 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             // BungeeOnlineTime 3.1+
             addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider31());
         } else if (p != null && isClassPresent("lu.r3flexi0n.bungeeonlinetime.BungeeOnlineTime")) {
-            // BungeeOnlineTime 4.3+
-            addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider43());
+            if (isMethodPresent("lu.r3flexi0n.bungeeonlinetime.utils.MySQL", "querySync", String.class)) {
+                // BungeeOnlineTime 4.3+
+                addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider43());
+            } else {
+                // BungeeOnlineTime 5.2+
+                addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider53());
+            }
         }
 
         p = ProxyServer.getInstance().getPluginManager().getPlugin("ProtocolSupportBungee");
@@ -137,6 +143,15 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             Class.forName(name);
             return true;
         } catch (ClassNotFoundException ignored) {
+            return false;
+        }
+    }
+
+    private static boolean isMethodPresent(String className, String methodName, Class<?>... parameters) {
+        try {
+            Class.forName(className).getMethod(methodName, parameters);
+            return true;
+        } catch (ClassNotFoundException | NoSuchMethodException ignored) {
             return false;
         }
     }
