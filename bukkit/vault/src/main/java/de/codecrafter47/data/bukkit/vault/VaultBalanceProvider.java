@@ -38,7 +38,7 @@ public class VaultBalanceProvider extends VaultDataProvider<Player, Double> {
         if (rsp != null) {
             Economy economy = rsp.getProvider();
             if (economy != null && economy.isEnabled()) {
-                if (economy.getName().equals("Gringotts")) {
+                if (!Bukkit.isPrimaryThread() && economy.getName().equals("Gringotts")) {
                     try {
                         return Bukkit.getScheduler().callSyncMethod(plugin, () -> economy.getBalance(player)).get();
                     } catch (InterruptedException | ExecutionException e) {
