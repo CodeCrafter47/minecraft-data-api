@@ -15,21 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-allprojects {
-    repositories {
-        maven {
-            url "http://repo.spongepowered.org/maven"
-        }
-    }
-    dependencies {
-        compileOnly "org.spongepowered:spongeapi:5.0.0"
-        compile project(":api")
-        compile project(":minecraft")
-    }
-}
+package de.codecrafter47.data.sponge.sponge5;
 
-dependencies {
-    compile project(":sponge:api")
-    compile project(":sponge:sponge5")
-    compile project(":sponge:sponge7")
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.service.context.Contextual;
+import org.spongepowered.api.service.permission.PermissionService;
+
+public class Sponge5 {
+    public static String getPrimaryGroup(Player player) {
+        return player.getParents().stream().filter(subject -> subject.getContainingCollection().getIdentifier().equals(PermissionService.SUBJECTS_GROUP)).findFirst().map(Contextual::getIdentifier).orElse(null);
+    }
 }

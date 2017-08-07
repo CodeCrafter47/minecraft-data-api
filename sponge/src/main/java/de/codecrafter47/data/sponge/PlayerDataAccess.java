@@ -18,14 +18,14 @@
 package de.codecrafter47.data.sponge;
 
 import de.codecrafter47.data.minecraft.api.MinecraftData;
+import de.codecrafter47.data.sponge.sponge5.Sponge5;
+import de.codecrafter47.data.sponge.sponge7.Sponge7;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.Team;
-import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.service.economy.EconomyService;
-import org.spongepowered.api.service.permission.PermissionService;
 
 public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
 
@@ -48,10 +48,23 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
 
         addProvider(MinecraftData.Economy_Balance, player -> Sponge.getGame().getServiceManager().provide(EconomyService.class).flatMap(e -> e.getOrCreateAccount(player.getUniqueId()).map(a -> a.getBalance(e.getDefaultCurrency(), player.getActiveContexts()).doubleValue())).orElse(null));
 
-        addProvider(MinecraftData.Permissions_PermissionGroup, player -> player.getParents().stream().filter(subject -> subject.getContainingCollection().getIdentifier().equals(PermissionService.SUBJECTS_GROUP)).findFirst().map(Contextual::getIdentifier).orElse(null));
+        if (!classExists("org.spongepowered.api.service.permission.SubjectReference")) {
+            addProvider(MinecraftData.Permissions_PermissionGroup, Sponge5::getPrimaryGroup);
+        } else {
+            addProvider(MinecraftData.Permissions_PermissionGroup, Sponge7::getPrimaryGroup);
+        }
         addProvider(MinecraftData.Permissions_PermissionGroupRank, player -> player.getOption("rank").map(Integer::parseInt).orElse(null));
         addProvider(MinecraftData.Permissions_PermissionGroupWeight, player -> player.getOption("weight").map(Integer::parseInt).orElse(null));
         addProvider(MinecraftData.Permissions_Prefix, player -> player.getOption("prefix").orElse(null));
         addProvider(MinecraftData.Permissions_Suffix, player -> player.getOption("suffix").orElse(null));
+    }
+
+    private static boolean classExists(String name) {
+        try {
+            Class.forName(name);
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 }
