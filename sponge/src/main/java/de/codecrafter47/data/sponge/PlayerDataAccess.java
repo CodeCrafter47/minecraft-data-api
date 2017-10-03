@@ -27,7 +27,13 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.service.economy.EconomyService;
 
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
+
+    private static Pattern PATTERN_API_VERSION = Pattern.compile("(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:-.*)?");
 
     public PlayerDataAccess(Logger logger) {
         super(logger);
@@ -48,7 +54,7 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
 
         addProvider(MinecraftData.Economy_Balance, player -> Sponge.getGame().getServiceManager().provide(EconomyService.class).flatMap(e -> e.getOrCreateAccount(player.getUniqueId()).map(a -> a.getBalance(e.getDefaultCurrency(), player.getActiveContexts()).doubleValue())).orElse(null));
 
-        if (!classExists("org.spongepowered.api.service.permission.SubjectReference")) {
+        if (getAPIMajorVersion(logger) < 7) {
             addProvider(MinecraftData.Permissions_PermissionGroup, Sponge5::getPrimaryGroup);
         } else {
             addProvider(MinecraftData.Permissions_PermissionGroup, Sponge7::getPrimaryGroup);
@@ -59,12 +65,29 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
         addProvider(MinecraftData.Permissions_Suffix, player -> player.getOption("suffix").orElse(null));
     }
 
-    private static boolean classExists(String name) {
-        try {
-            Class.forName(name);
-        } catch (ClassNotFoundException e) {
-            return false;
+    private static int getAPIMajorVersion(Logger logger) {
+        Optional<String> apiVersion = Sponge.getPlatform().getApi().getVersion();
+        if (apiVersion.isPresent()) {
+            Matcher matcher = PATTERN_API_VERSION.matcher(apiVersion.get());
+            if (matcher.matches()) {
+                String major = matcher.group("major");
+                if (major == null) {
+                    // this is not supposed to happen
+                    throw new AssertionError();
+                }
+                try {
+                    return Integer.parseInt(major);
+                } catch (NumberFormatException e) {
+                    logger.warn("Failed to parse Sponge API major version", e);
+                    return 0;
+                }
+            } else {
+                logger.warn("Sponge API version does not match expected pattern.");
+                return 0;
+            }
+        } else {
+            logger.warn("Sponge API version not available.");
+            return 0;
         }
-        return true;
     }
 }
