@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class DataCache implements DataHolder {
     private final Map<DataKey<?>, Object> cache = new ConcurrentHashMap<>();
-    private final Multimap<DataKey<?>, Runnable> listeners = Multimaps.synchronizedMultimap(MultimapBuilder.hashKeys().hashSetValues().build());
+    protected final Multimap<DataKey<?>, Runnable> listeners = Multimaps.synchronizedMultimap(MultimapBuilder.hashKeys().hashSetValues().build());
 
     @SuppressWarnings("unchecked")
     public <T> void updateValue(DataKey<T> dataKey, T object) {
