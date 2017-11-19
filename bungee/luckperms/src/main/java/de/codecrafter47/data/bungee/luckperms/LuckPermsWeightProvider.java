@@ -40,10 +40,7 @@ public class LuckPermsWeightProvider implements Function<ProxiedPlayer, Integer>
             return null;
         }
 
-        UserData data = user.getUserDataCache().orElse(null);
-        if (data == null) {
-            return null;
-        }
+        UserData data = user.getCachedData();
 
         Contexts context = lp.getContextForUser(user).orElse(null);
         if (context == null) {
