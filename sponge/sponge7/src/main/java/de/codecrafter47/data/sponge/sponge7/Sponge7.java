@@ -18,19 +18,15 @@
 package de.codecrafter47.data.sponge.sponge7;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.service.permission.PermissionService;
-import org.spongepowered.api.service.permission.Subject;
-
-import java.util.concurrent.CompletableFuture;
+import org.spongepowered.api.service.permission.SubjectReference;
 
 public class Sponge7 {
     public static String getPrimaryGroup(Player player) {
         return player.getParents().stream()
-                .map(ref -> ref.resolve().join())
-                .filter(subject -> subject.getContainingCollection().getIdentifier().equals(PermissionService.SUBJECTS_GROUP))
+                .filter(ref -> ref.getCollectionIdentifier().equals(PermissionService.SUBJECTS_GROUP))
                 .findFirst()
-                .map(Contextual::getIdentifier)
+                .map(SubjectReference::getSubjectIdentifier)
                 .orElse(null);
     }
 }
