@@ -35,17 +35,13 @@ public class LuckPermsPrefixProvider implements Function<ProxiedPlayer, String> 
             return null;
         }
 
-        User user = lp.getUserSafe(player.getUniqueId()).orElse(null);
+        User user = lp.getUser(player.getUniqueId());
         if (user == null) {
             return null;
         }
 
         UserData data = user.getCachedData();
-
-        Contexts context = lp.getContextForUser(user).orElse(null);
-        if (context == null) {
-            return null;
-        }
+        Contexts context = lp.getContextManager().getApplicableContexts(player);
 
         return data.getMetaData(context).getPrefix();
     }

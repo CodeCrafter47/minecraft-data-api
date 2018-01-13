@@ -21,9 +21,11 @@ import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.Contexts;
 import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.User;
+import me.lucko.luckperms.api.caching.MetaData;
 import me.lucko.luckperms.api.caching.UserData;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
+import java.util.List;
 import java.util.function.Function;
 
 public class LuckPermsWeightProvider implements Function<ProxiedPlayer, Integer> {
@@ -35,27 +37,25 @@ public class LuckPermsWeightProvider implements Function<ProxiedPlayer, Integer>
             return null;
         }
 
-        User user = lp.getUserSafe(player.getUniqueId()).orElse(null);
+        User user = lp.getUser(player.getUniqueId());
         if (user == null) {
             return null;
         }
 
         UserData data = user.getCachedData();
+        Contexts context = lp.getContextManager().getApplicableContexts(player);
+        MetaData metaData = data.getMetaData(context);
 
-        Contexts context = lp.getContextForUser(user).orElse(null);
-        if (context == null) {
-            return null;
+        List<String> values = metaData.getMetaMultimap().get("weight");
+
+        for (String value : values) {
+            try {
+                return Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                // ignore
+            }
         }
 
-        String s = data.getMetaData(context).getMeta().getOrDefault("weight", null);
-        if (s == null) {
-            return 0;
-        }
-
-        try {
-            return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
+        return 0;
     }
 }
