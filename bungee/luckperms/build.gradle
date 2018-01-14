@@ -15,12 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-repositories {
-    maven {
-        url "https://repo.lucko.me/"
-    }
-}
-
 dependencies {
-    compileOnly group: "me.lucko.luckperms", name: "luckperms-api", version: "3.4"
+    compileOnly group: "me.lucko.luckperms", name: "luckperms-api", version: "4.0"
 }

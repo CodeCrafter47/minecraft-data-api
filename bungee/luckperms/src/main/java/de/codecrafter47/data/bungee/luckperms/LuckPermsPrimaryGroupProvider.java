@@ -33,7 +33,7 @@ public class LuckPermsPrimaryGroupProvider implements Function<ProxiedPlayer, St
             return null;
         }
 
-        User user = lp.getUserSafe(player.getUniqueId()).orElse(null);
+        User user = lp.getUser(player.getUniqueId());
         if (user == null) {
             return null;
         }
