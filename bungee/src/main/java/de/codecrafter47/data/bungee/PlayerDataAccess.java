@@ -18,10 +18,7 @@
 package de.codecrafter47.data.bungee;
 
 import de.codecrafter47.data.bungee.api.BungeeData;
-import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider30;
-import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider31;
-import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider43;
-import de.codecrafter47.data.bungee.bungeeonlinetime.BungeeOnlineTimeOnlineTimeProvider53;
+import de.codecrafter47.data.bungee.bungeeonlinetime.*;
 import de.codecrafter47.data.bungee.bungeeperms2.*;
 import de.codecrafter47.data.bungee.bungeeperms3.*;
 import de.codecrafter47.data.bungee.clans.*;
@@ -115,9 +112,12 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             if (isMethodPresent("lu.r3flexi0n.bungeeonlinetime.utils.MySQL", "querySync", String.class)) {
                 // BungeeOnlineTime 4.3+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider43());
-            } else {
+            } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.utils.MySQL")) {
                 // BungeeOnlineTime 5.2+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider53());
+            } else {
+                // BungeeOnlineTime 5.4+
+                addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider55());
             }
         }
 
