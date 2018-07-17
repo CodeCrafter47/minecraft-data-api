@@ -42,4 +42,5 @@ dependencies {
     compile project(":bukkit:factions")
     compile project(":bukkit:essentials")
     compile project(":bukkit:askyblock")
+    compile project(":bukkit:cmi")
 }
