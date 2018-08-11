@@ -31,7 +31,7 @@ public class BungeeOnlineTimeOnlineTimeProvider55 implements Function<ProxiedPla
     public Duration apply(ProxiedPlayer player) {
         try {
             long time = BungeeOnlineTime.mysql.getOnlineTime(player.getUniqueId(), 0);
-            return Duration.of(time, ChronoUnit.MINUTES);
+            return Duration.of(time, ChronoUnit.SECONDS);
         } catch (SQLException | ClassNotFoundException ignored) {
 
         }
