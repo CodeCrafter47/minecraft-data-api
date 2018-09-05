@@ -144,7 +144,9 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
         }
 
         if (Bukkit.getPluginManager().getPlugin("CMI") != null) {
-            addProvider(BukkitData.CMI_IsVanished, new CMIIsVanishedProvider());
+            if (isMethodPresent("com.Zrips.CMI.Containers.CMIUser", "isVanished")) {
+                addProvider(BukkitData.CMI_IsVanished, new CMIIsVanishedProvider());
+            }
         }
     }
 
@@ -155,5 +157,14 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
             return false;
         }
         return true;
+    }
+
+    private static boolean isMethodPresent(String className, String methodName, Class<?>... parameters) {
+        try {
+            Class.forName(className).getMethod(methodName, parameters);
+            return true;
+        } catch (ClassNotFoundException | NoSuchMethodException ignored) {
+            return false;
+        }
     }
 }
