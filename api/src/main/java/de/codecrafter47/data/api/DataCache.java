@@ -17,16 +17,15 @@
 
 package de.codecrafter47.data.api;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
-import com.google.common.collect.Multimaps;
+import com.google.common.collect.Sets;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DataCache implements DataHolder {
     private final Map<DataKey<?>, Object> cache = new ConcurrentHashMap<>();
-    protected final Multimap<DataKey<?>, Runnable> listeners = Multimaps.synchronizedMultimap(MultimapBuilder.hashKeys().hashSetValues().build());
+    private final Map<DataKey<?>, Set<Runnable>> listenerMap = new ConcurrentHashMap<>();
 
     @SuppressWarnings("unchecked")
     public <T> void updateValue(DataKey<T> dataKey, T object) {
@@ -35,8 +34,9 @@ public class DataCache implements DataHolder {
         } else {
             cache.put(dataKey, object);
         }
-        synchronized (listeners) {
-            listeners.get(dataKey).forEach(Runnable::run);
+        Set<Runnable> listeners = listenerMap.get(dataKey);
+        if (listeners != null) {
+            listeners.forEach(Runnable::run);
         }
     }
 
@@ -48,11 +48,21 @@ public class DataCache implements DataHolder {
 
     @Override
     public <T> void addDataChangeListener(DataKey<T> key, Runnable listener) {
-        listeners.put(key, listener);
+        listenerMap.computeIfAbsent(key, k -> Sets.newConcurrentHashSet()).add(listener);
     }
 
     @Override
     public <T> void removeDataChangeListener(DataKey<T> key, Runnable listener) {
-        listeners.remove(key, listener);
+        Set<Runnable> listeners = listenerMap.get(key);
+        if (listeners != null) {
+            listeners.remove(listener);
+            if (listeners.isEmpty()) {
+                listenerMap.remove(key);
+            }
+        }
+    }
+
+    public boolean hasListeners(DataKey<?> key) {
+        return listenerMap.containsKey(key);
     }
 }
