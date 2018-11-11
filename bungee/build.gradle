@@ -37,6 +37,7 @@ dependencies {
     compile project(":bungee:bungeeonlinetime43")
     compile project(":bungee:bungeeonlinetime53")
     compile project(":bungee:bungeeonlinetime55")
+    compile project(":bungee:bungeeonlinetime61")
     compile project(":bungee:protocolsupportbungee")
     compile project(":bungee:pafclans")
 }

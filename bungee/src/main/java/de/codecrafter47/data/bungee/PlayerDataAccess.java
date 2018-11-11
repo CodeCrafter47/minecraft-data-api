@@ -115,9 +115,12 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.utils.MySQL")) {
                 // BungeeOnlineTime 5.2+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider53());
-            } else {
+            } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.MySQL")){
                 // BungeeOnlineTime 5.4+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider55());
+            } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.database.SQL")) {
+                // BungeeOnlineTime 6.1+
+                addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider61());
             }
         }
 
