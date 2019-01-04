@@ -33,6 +33,7 @@ import net.md_5.bungee.api.connection.Server;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.util.Collection;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
@@ -115,12 +116,15 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.utils.MySQL")) {
                 // BungeeOnlineTime 5.2+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider53());
-            } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.MySQL")){
+            } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.MySQL")) {
                 // BungeeOnlineTime 5.4+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider55());
-            } else if (isClassPresent("lu.r3flexi0n.bungeeonlinetime.database.SQL")) {
+            } else if (isMethodPresent("lu.r3flexi0n.bungeeonlinetime.database.SQL", "getOnlineTime", UUID.class, long.class)) {
                 // BungeeOnlineTime 6.1+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider61());
+            } else if (isMethodPresent("lu.r3flexi0n.bungeeonlinetime.database.SQL", "getOnlineTime", UUID.class)) {
+                // BungeeOnlineTime 7.0+
+                addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider70());
             }
         }
 
