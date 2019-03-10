@@ -31,7 +31,7 @@ public class BungeeOnlineTimeOnlineTimeProvider70 implements Function<ProxiedPla
     public Duration apply(ProxiedPlayer player) {
         try {
             long time = BungeeOnlineTime.SQL.getOnlineTime(player.getUniqueId()).getTime();
-            return Duration.of(time, ChronoUnit.SECONDS);
+            return Duration.of(time, ChronoUnit.MILLIS);
         } catch (Exception ignored) {
 
         }
