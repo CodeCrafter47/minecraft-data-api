@@ -26,6 +26,7 @@ import java.time.Duration;
 
 public class BungeeData implements DataKeyCatalogue {
     public final static Scope SCOPE_BUNGEE_PLAYER = new Scope("bungee:player");
+    public final static Scope SCOPE_BUNGEE_SERVER = new Scope("bungee:server");
 
     // BungeeCord player data keys
     public final static DataKey<String> BungeeCord_DisplayName = new DataKey<>("bungeecord:displayname", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
