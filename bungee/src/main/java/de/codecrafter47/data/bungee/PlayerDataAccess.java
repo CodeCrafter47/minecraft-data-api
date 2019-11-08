@@ -27,6 +27,7 @@ import de.codecrafter47.data.bungee.luckperms.LuckPermsPrimaryGroupProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsSuffixProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsWeightProvider;
 import de.codecrafter47.data.bungee.protocolsupportbungee.ProtocolSupportBungeeClientVersionProvider;
+import de.codecrafter47.data.bungee.proxysuite.ProxySuiteIsVanishedProvider;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;
@@ -142,6 +143,10 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             addProvider(BungeeData.PAFClans_IsLeader, new ClansIsLeaderProvider());
             addProvider(BungeeData.PAFClans_MemberCount, new ClansClanMembersProvider());
             addProvider(BungeeData.PAFClans_OnlineMemberCount, new ClansClanOnlineMembersProvider());
+        }
+
+        if (ProxyServer.getInstance().getPluginManager().getPlugin("ProxySuite") != null) {
+            addProvider(BungeeData.ProxyCore_IsHidden, new ProxySuiteIsVanishedProvider(logger));
         }
     }
 

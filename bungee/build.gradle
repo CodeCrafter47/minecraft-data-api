@@ -41,4 +41,5 @@ dependencies {
     compile project(":bungee:bungeeonlinetime70")
     compile project(":bungee:protocolsupportbungee")
     compile project(":bungee:pafclans")
+    compile project(":bungee:proxycore")
 }
