@@ -26,6 +26,7 @@ import de.codecrafter47.data.bungee.luckperms.LuckPermsPrefixProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsPrimaryGroupProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsSuffixProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsWeightProvider;
+import de.codecrafter47.data.bungee.premiumvanish.PremiumVanishIsVanishedProvider;
 import de.codecrafter47.data.bungee.protocolsupportbungee.ProtocolSupportBungeeClientVersionProvider;
 import de.codecrafter47.data.bungee.proxysuite.ProxySuiteIsVanishedProvider;
 import net.md_5.bungee.api.ProxyServer;
@@ -147,6 +148,10 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
 
         if (ProxyServer.getInstance().getPluginManager().getPlugin("ProxySuite") != null) {
             addProvider(BungeeData.ProxyCore_IsHidden, new ProxySuiteIsVanishedProvider(logger));
+        }
+
+        if (isClassPresent("de.myzelyam.api.vanish.BungeeVanishAPI")) {
+            addProvider(BungeeData.PremiumVanish_IsHidden, new PremiumVanishIsVanishedProvider());
         }
     }
 

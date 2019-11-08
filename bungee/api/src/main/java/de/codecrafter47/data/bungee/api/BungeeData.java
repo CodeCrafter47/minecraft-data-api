@@ -51,6 +51,7 @@ public class BungeeData implements DataKeyCatalogue {
     public final static DataKey<Integer> PAFClans_MemberCount = new DataKey<>("pafclans:membercount", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<Integer> PAFClans_OnlineMemberCount = new DataKey<>("pafclans:onlinemembercount", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<Boolean> ProxyCore_IsHidden = new DataKey<>("proxycore:is_hidden", SCOPE_BUNGEE_PLAYER, TypeToken.BOOLEAN);
+    public final static DataKey<Boolean> PremiumVanish_IsHidden = new DataKey<>("premiumvanish:is_hidden", SCOPE_BUNGEE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<String> ClientVersion = new DataKey<>("minecraft:clientversion", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<Duration> BungeeCord_SessionDuration = new DataKey<>("minecraft:sessionduration", SCOPE_BUNGEE_PLAYER, TypeToken.DURATION);
     public final static DataKey<String> BungeeCord_Server = new DataKey<>("bungeecord:server", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
