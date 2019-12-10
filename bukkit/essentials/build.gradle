@@ -17,13 +17,14 @@
 
 repositories {
     maven {
-        url "http://repo.ess3.net/content/groups/essentials"
+        url "https://ci.ender.zone/plugin/repository/everything/"
     }
 }
 
 dependencies {
-    compileOnly (group: "net.ess3", name: "Essentials", version: "2.13.1") {
+    compileOnly (group: "net.ess3", name: "EssentialsX", version: "2.17.0") {
         exclude group: "de.bananaco", module: "bPermissions"
         exclude group: "net.milkbowl", module: "vault"
+        exclude group: "io.papermc"
     }
 }
