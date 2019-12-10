@@ -26,6 +26,10 @@ import de.codecrafter47.data.bungee.luckperms.LuckPermsPrefixProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsPrimaryGroupProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsSuffixProvider;
 import de.codecrafter47.data.bungee.luckperms.LuckPermsWeightProvider;
+import de.codecrafter47.data.bungee.luckperms5.LuckPerms5PrefixProvider;
+import de.codecrafter47.data.bungee.luckperms5.LuckPerms5PrimaryGroupProvider;
+import de.codecrafter47.data.bungee.luckperms5.LuckPerms5SuffixProvider;
+import de.codecrafter47.data.bungee.luckperms5.LuckPerms5WeightProvider;
 import de.codecrafter47.data.bungee.premiumvanish.PremiumVanishIsVanishedProvider;
 import de.codecrafter47.data.bungee.protocolsupportbungee.ProtocolSupportBungeeClientVersionProvider;
 import de.codecrafter47.data.bungee.proxysuite.ProxySuiteIsVanishedProvider;
@@ -98,10 +102,19 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
 
         p = ProxyServer.getInstance().getPluginManager().getPlugin("LuckPerms");
         if (p != null) {
-            addProvider(BungeeData.LuckPerms_PrimaryGroup, new LuckPermsPrimaryGroupProvider());
-            addProvider(BungeeData.LuckPerms_Prefix, new LuckPermsPrefixProvider());
-            addProvider(BungeeData.LuckPerms_Suffix, new LuckPermsSuffixProvider());
-            addProvider(BungeeData.LuckPerms_Weight, new LuckPermsWeightProvider());
+            if (isClassPresent("net.luckperms.api.LuckPerms")) {
+                // API v5.0
+                addProvider(BungeeData.LuckPerms_PrimaryGroup, new LuckPerms5PrimaryGroupProvider());
+                addProvider(BungeeData.LuckPerms_Prefix, new LuckPerms5PrefixProvider());
+                addProvider(BungeeData.LuckPerms_Suffix, new LuckPerms5SuffixProvider());
+                addProvider(BungeeData.LuckPerms_Weight, new LuckPerms5WeightProvider());
+            } else {
+                // API v4.0
+                addProvider(BungeeData.LuckPerms_PrimaryGroup, new LuckPermsPrimaryGroupProvider());
+                addProvider(BungeeData.LuckPerms_Prefix, new LuckPermsPrefixProvider());
+                addProvider(BungeeData.LuckPerms_Suffix, new LuckPermsSuffixProvider());
+                addProvider(BungeeData.LuckPerms_Weight, new LuckPermsWeightProvider());
+            }
         }
 
         p = ProxyServer.getInstance().getPluginManager().getPlugin("BungeeOnlineTime");

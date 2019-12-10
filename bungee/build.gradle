@@ -32,6 +32,7 @@ dependencies {
     compile project(":bungee:bungeeperms2")
     compile project(":bungee:bungeeperms3")
     compile project(":bungee:luckperms")
+    compile project(":bungee:luckperms5")
     compile project(":bungee:bungeeonlinetime30")
     compile project(":bungee:bungeeonlinetime31")
     compile project(":bungee:bungeeonlinetime43")
