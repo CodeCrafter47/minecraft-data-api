@@ -38,6 +38,7 @@ public class BungeeData implements DataKeyCatalogue {
     public final static DataKey<String> BungeePerms_DisplayPrefix = new DataKey<>("bungeeperms:displayprefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> BungeePerms_Suffix = new DataKey<>("bungeeperms:suffix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<Integer> BungeePerms_Rank = new DataKey<>("bungeeperms:rank", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
+    public final static DataKey<Integer> BungeePerms_Weight = new DataKey<>("bungeeperms:weight", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<String> BungeePerms_PrimaryGroupPrefix = new DataKey<>("bungeeperms:primarygroupprefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> BungeePerms_PlayerPrefix = new DataKey<>("bungeeperms:playerprefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> LuckPerms_PrimaryGroup = new DataKey<>("luckperms:primarygroup", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);

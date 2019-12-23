@@ -88,6 +88,7 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             addProvider(BungeeData.BungeePerms_DisplayPrefix, new BungeePerms2DisplayProvider());
             addProvider(BungeeData.BungeePerms_Suffix, new BungeePerms2SuffixProvider());
             addProvider(BungeeData.BungeePerms_Rank, new BungeePerms2RankProvider());
+            addProvider(BungeeData.BungeePerms_Weight, new BungeePerms2WeightProvider());
             addProvider(BungeeData.BungeePerms_PrimaryGroupPrefix, new BungeePermsPrefixProvider());
         } else if (p != null && isClassPresent("net.alpenblock.bungeeperms.platform.bungee.BungeePlugin")) {
             // BungeePerms 3.x
@@ -96,6 +97,7 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             addProvider(BungeeData.BungeePerms_DisplayPrefix, new BungeePermsDisplayProvider());
             addProvider(BungeeData.BungeePerms_Suffix, new BungeePermsSuffixProvider());
             addProvider(BungeeData.BungeePerms_Rank, new BungeePermsRankProvider());
+            addProvider(BungeeData.BungeePerms_Weight, new BungeePermsWeightProvider());
             addProvider(BungeeData.BungeePerms_PrimaryGroupPrefix, new BungeePermsGroupPrefixProvider());
             addProvider(BungeeData.BungeePerms_PlayerPrefix, new BungeePermsUserPrefixProvider());
         }
