@@ -24,7 +24,14 @@ import de.codecrafter47.data.bukkit.askyblock.ASkyBlockTeamLeaderProvider;
 import de.codecrafter47.data.bukkit.cmi.CMIIsVanishedProvider;
 import de.codecrafter47.data.bukkit.essentials.EssentialsIsAFKProvider;
 import de.codecrafter47.data.bukkit.essentials.EssentialsIsVanishedProvider;
+import de.codecrafter47.data.bukkit.factions.FactionMembersProvider;
+import de.codecrafter47.data.bukkit.factions.FactionNameProvider;
+import de.codecrafter47.data.bukkit.factions.FactionOnlineMembersProvider;
+import de.codecrafter47.data.bukkit.factions.FactionPowerProvider;
+import de.codecrafter47.data.bukkit.factions.FactionRankProvider;
+import de.codecrafter47.data.bukkit.factions.FactionWhereProvider;
 import de.codecrafter47.data.bukkit.factions.*;
+import de.codecrafter47.data.bukkit.factionsuuid.*;
 import de.codecrafter47.data.bukkit.multiverse.MultiverseWorldAliasProvider;
 import de.codecrafter47.data.bukkit.playerpoints.PlayerPointsProvider;
 import de.codecrafter47.data.bukkit.simpleclans.*;
@@ -93,13 +100,23 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
 
         if (Bukkit.getPluginManager().getPlugin("Factions") != null) {
             if (classExists("com.massivecraft.factions.FPlayer")) {
-                addProvider(BukkitData.Factions_FactionName, new de.codecrafter47.data.bukkit.factionsuuid.FactionNameProvider());
-                addProvider(BukkitData.Factions_FactionMembers, new de.codecrafter47.data.bukkit.factionsuuid.FactionMembersProvider());
-                addProvider(BukkitData.Factions_FactionPower, new de.codecrafter47.data.bukkit.factionsuuid.FactionPowerProvider());
-                addProvider(BukkitData.Factions_FactionsRank, new de.codecrafter47.data.bukkit.factionsuuid.FactionRankProvider());
-                addProvider(BukkitData.Factions_FactionsWhere, new de.codecrafter47.data.bukkit.factionsuuid.FactionWhereProvider());
-                addProvider(BukkitData.Factions_OnlineFactionMembers, new de.codecrafter47.data.bukkit.factionsuuid.FactionOnlineMembersProvider());
-                addProvider(BukkitData.Factions_PlayerPower, new de.codecrafter47.data.bukkit.factionsuuid.FactionPlayerPowerProvider());
+                if (classExists("com.massivecraft.factions.perms.Role")) {
+                    addProvider(BukkitData.Factions_FactionName, new FactionNameProvider05());
+                    addProvider(BukkitData.Factions_FactionMembers, new FactionMembersProvider05());
+                    addProvider(BukkitData.Factions_FactionPower, new FactionPowerProvider05());
+                    addProvider(BukkitData.Factions_FactionsRank, new FactionRankProvider05());
+                    addProvider(BukkitData.Factions_FactionsWhere, new FactionWhereProvider05());
+                    addProvider(BukkitData.Factions_OnlineFactionMembers, new FactionOnlineMembersProvider05());
+                    addProvider(BukkitData.Factions_PlayerPower, new FactionPlayerPowerProvider05());
+                } else {
+                    addProvider(BukkitData.Factions_FactionName, new de.codecrafter47.data.bukkit.factionsuuid.FactionNameProvider());
+                    addProvider(BukkitData.Factions_FactionMembers, new de.codecrafter47.data.bukkit.factionsuuid.FactionMembersProvider());
+                    addProvider(BukkitData.Factions_FactionPower, new de.codecrafter47.data.bukkit.factionsuuid.FactionPowerProvider());
+                    addProvider(BukkitData.Factions_FactionsRank, new de.codecrafter47.data.bukkit.factionsuuid.FactionRankProvider());
+                    addProvider(BukkitData.Factions_FactionsWhere, new de.codecrafter47.data.bukkit.factionsuuid.FactionWhereProvider());
+                    addProvider(BukkitData.Factions_OnlineFactionMembers, new de.codecrafter47.data.bukkit.factionsuuid.FactionOnlineMembersProvider());
+                    addProvider(BukkitData.Factions_PlayerPower, new de.codecrafter47.data.bukkit.factionsuuid.FactionPlayerPowerProvider());
+                }
             } else if (classExists("com.massivecraft.factions.entity.MPlayer")) {
                 addProvider(BukkitData.Factions_FactionName, new FactionNameProvider());
                 addProvider(BukkitData.Factions_FactionMembers, new FactionMembersProvider());
