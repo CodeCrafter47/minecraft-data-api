@@ -15,22 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-allprojects {
-    repositories {
-        maven {
-            url "http://repo.spongepowered.org/maven"
-        }
-    }
-    dependencies {
-        compileOnly "org.spongepowered:spongeapi:5.0.0"
-        compile project(":api")
-        compile project(":minecraft")
-    }
-}
+package de.codecrafter47.data.sponge.nucleus;
 
-dependencies {
-    compile project(":sponge:api")
-    compile project(":sponge:sponge5")
-    compile project(":sponge:sponge7")
-    compile project(":sponge:nucleus")
+import io.github.nucleuspowered.nucleus.api.NucleusAPI;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.Text;
+
+public class Nucleus {
+
+    public static boolean isAfk(Player player) {
+        return NucleusAPI.getAFKService().map(afkService -> afkService.isAFK(player)).orElse(false);
+    }
+
+    public static String getNick(Player player) {
+        return NucleusAPI.getNicknameService().flatMap(nickService -> nickService.getNickname(player)).map(Text::toPlain).orElse(null);
+    }
 }

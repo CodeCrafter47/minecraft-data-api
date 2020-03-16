@@ -18,6 +18,8 @@
 package de.codecrafter47.data.sponge;
 
 import de.codecrafter47.data.minecraft.api.MinecraftData;
+import de.codecrafter47.data.sponge.api.SpongeData;
+import de.codecrafter47.data.sponge.nucleus.Nucleus;
 import de.codecrafter47.data.sponge.sponge5.Sponge5;
 import de.codecrafter47.data.sponge.sponge7.Sponge7;
 import org.slf4j.Logger;
@@ -63,6 +65,11 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
         addProvider(MinecraftData.Permissions_PermissionGroupWeight, player -> player.getOption("weight").map(Integer::parseInt).orElse(null));
         addProvider(MinecraftData.Permissions_Prefix, player -> player.getOption("prefix").orElse(null));
         addProvider(MinecraftData.Permissions_Suffix, player -> player.getOption("suffix").orElse(null));
+
+        if (classExists("io.github.nucleuspowered.nucleus.api.NucleusAPI")) {
+            addProvider(SpongeData.Nucleus_IsAFK, Nucleus::isAfk);
+            addProvider(SpongeData.Nucleus_Nick, Nucleus::getNick);
+        }
     }
 
     private static int getAPIMajorVersion(Logger logger) {
@@ -89,5 +96,14 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
             logger.warn("Sponge API version not available.");
             return 0;
         }
+    }
+
+    private static boolean classExists(String name) {
+        try {
+            Class.forName(name);
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 }

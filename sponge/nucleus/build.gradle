@@ -15,22 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-allprojects {
-    repositories {
-        maven {
-            url "http://repo.spongepowered.org/maven"
-        }
+repositories {
+    maven {
+        url "http://repo.drnaylor.co.uk/artifactory/list/minecraft"
     }
-    dependencies {
-        compileOnly "org.spongepowered:spongeapi:5.0.0"
-        compile project(":api")
-        compile project(":minecraft")
+    maven {
+        url "http://repo.spongepowered.org/maven"
     }
 }
-
 dependencies {
-    compile project(":sponge:api")
-    compile project(":sponge:sponge5")
-    compile project(":sponge:sponge7")
-    compile project(":sponge:nucleus")
+    compileOnly "io.github.nucleuspowered:nucleus-api:1.9.3-S7.1"
+    compileOnly "org.spongepowered:spongeapi:7.0.0"
 }
