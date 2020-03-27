@@ -34,6 +34,7 @@ import de.codecrafter47.data.bukkit.factions.*;
 import de.codecrafter47.data.bukkit.factionsuuid.*;
 import de.codecrafter47.data.bukkit.multiverse.MultiverseWorldAliasProvider;
 import de.codecrafter47.data.bukkit.playerpoints.PlayerPointsProvider;
+import de.codecrafter47.data.bukkit.protocolvanish.ProtocolVanishIsVanishedProvider;
 import de.codecrafter47.data.bukkit.simpleclans.*;
 import de.codecrafter47.data.bukkit.supervanish.SuperVanishIsVanishedProvider;
 import de.codecrafter47.data.bukkit.vanishnopacket.VanishNoPacketIsVanishedProvider;
@@ -164,6 +165,10 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
             if (isMethodPresent("com.Zrips.CMI.Containers.CMIUser", "isVanished")) {
                 addProvider(BukkitData.CMI_IsVanished, new CMIIsVanishedProvider());
             }
+        }
+
+        if (Bukkit.getPluginManager().isPluginEnabled("ProtocolVanish")) {
+            addProvider(BukkitData.ProtocolVanish_IsVanished, new ProtocolVanishIsVanishedProvider());
         }
     }
 

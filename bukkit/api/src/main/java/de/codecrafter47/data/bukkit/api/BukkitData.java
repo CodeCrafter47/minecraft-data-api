@@ -48,5 +48,6 @@ public class BukkitData implements DataKeyCatalogue {
     public final static DataKey<String> ASkyBlock_IslandName = new DataKey<>("bukkit:askyblock:islandname", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> ASkyBlock_TeamLeader = new DataKey<>("bukkit:askyblock:teamleader", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
     public final static DataKey<Boolean> CMI_IsVanished = new DataKey<>("bukkit:cmi:is_vanished", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
+    public final static DataKey<Boolean> ProtocolVanish_IsVanished = new DataKey<>("bukkit:protocolvanish:is_vanished", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
 
 }
