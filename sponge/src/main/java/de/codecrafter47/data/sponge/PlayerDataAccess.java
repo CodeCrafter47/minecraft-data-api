@@ -28,6 +28,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.service.economy.EconomyService;
+import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -51,7 +52,7 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
         addProvider(MinecraftData.Team, player -> player.getScoreboard().getMemberTeam(player.getTeamRepresentation()).map(Team::getName).orElse(null));
         addProvider(MinecraftData.Permission, (player, key) -> player.hasPermission(key.getParameter()));
 
-        addProvider(MinecraftData.DisplayName, player -> player.getDisplayNameData().displayName().get().toPlain());
+        addProvider(MinecraftData.DisplayName, player -> TextSerializers.FORMATTING_CODE.serialize(player.getDisplayNameData().displayName().get()));
         addProvider(MinecraftData.World, player -> player.getWorld().getName());
 
         addProvider(MinecraftData.Economy_Balance, player -> Sponge.getGame().getServiceManager().provide(EconomyService.class).flatMap(e -> e.getOrCreateAccount(player.getUniqueId()).map(a -> a.getBalance(e.getDefaultCurrency(), player.getActiveContexts()).doubleValue())).orElse(null));

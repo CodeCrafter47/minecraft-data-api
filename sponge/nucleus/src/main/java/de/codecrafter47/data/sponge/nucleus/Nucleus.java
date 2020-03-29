@@ -19,7 +19,7 @@ package de.codecrafter47.data.sponge.nucleus;
 
 import io.github.nucleuspowered.nucleus.api.NucleusAPI;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.serializer.TextSerializers;
 
 public class Nucleus {
 
@@ -28,6 +28,6 @@ public class Nucleus {
     }
 
     public static String getNick(Player player) {
-        return NucleusAPI.getNicknameService().flatMap(nickService -> nickService.getNickname(player)).map(Text::toPlain).orElse(null);
+        return NucleusAPI.getNicknameService().flatMap(nickService -> nickService.getNickname(player)).map(TextSerializers.FORMATTING_CODE::serialize).orElse(null);
     }
 }
