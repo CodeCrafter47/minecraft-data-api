@@ -17,10 +17,7 @@
 
 package de.codecrafter47.data.bungee.bungeeperms3;
 
-import net.alpenblock.bungeeperms.BungeePerms;
-import net.alpenblock.bungeeperms.Group;
-import net.alpenblock.bungeeperms.PermissionsManager;
-import net.alpenblock.bungeeperms.User;
+import net.alpenblock.bungeeperms.*;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.function.Function;
@@ -35,6 +32,14 @@ public class BungeePermsGroupPrefixProvider implements Function<ProxiedPlayer, S
             if (user != null) {
                 Group mainGroup = pm.getMainGroup(user);
                 if (mainGroup != null) {
+                    net.md_5.bungee.api.connection.Server serverConnection = player.getServer();
+                    if (serverConnection != null) {
+                        String serverName = serverConnection.getInfo().getName();
+                        Server server = mainGroup.getServer(serverName);
+                        if (server != null && server.getPrefix() != null) {
+                            return server.getPrefix();
+                        }
+                    }
                     return mainGroup.getPrefix();
                 }
             }
