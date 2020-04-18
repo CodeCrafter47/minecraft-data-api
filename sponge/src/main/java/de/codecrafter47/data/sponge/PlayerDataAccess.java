@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 
 public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
 
-    private static Pattern PATTERN_API_VERSION = Pattern.compile("(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:-.*)?");
+    private static Pattern PATTERN_API_VERSION = Pattern.compile("(?<major>\\d+)\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?(?:-.*)?");
 
     public PlayerDataAccess(Logger logger) {
         super(logger);
