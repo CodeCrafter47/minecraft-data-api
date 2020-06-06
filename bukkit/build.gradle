@@ -25,24 +25,24 @@ allprojects {
         compileOnly (group: 'org.spigotmc', name: 'spigot-api', version: "1.10.2-R0.1-SNAPSHOT") {
             exclude group: 'net.md-5', module: 'bungeecord-chat'
         }
-        compile project(":api")
-        compile project(":minecraft")
     }
 }
 
 dependencies {
-    compile project(":bukkit:api")
-    compile project(":bukkit:vault")
-    compile project(":bukkit:vanishnopacket")
-    compile project(":bukkit:supervanish")
-    compile project(":bukkit:simpleclans")
-    compile project(":bukkit:playerpoints")
-    compile project(":bukkit:multiverse")
-    compile project(":bukkit:factionsuuid")
-    compile project(":bukkit:factionsuuid05")
-    compile project(":bukkit:factions")
-    compile project(":bukkit:essentials")
-    compile project(":bukkit:askyblock")
-    compile project(":bukkit:cmi")
-    compile project(":bukkit:protocolvanish")
+    api project(":api")
+    implementation project(":minecraft")
+    implementation project(":bukkit:api")
+    implementation project(":bukkit:vault")
+    implementation project(":bukkit:vanishnopacket")
+    implementation project(":bukkit:supervanish")
+    implementation project(":bukkit:simpleclans")
+    implementation project(":bukkit:playerpoints")
+    implementation project(":bukkit:multiverse")
+    implementation project(":bukkit:factionsuuid")
+    implementation project(":bukkit:factionsuuid05")
+    implementation project(":bukkit:factions")
+    implementation project(":bukkit:essentials")
+    implementation project(":bukkit:askyblock")
+    implementation project(":bukkit:cmi")
+    implementation project(":bukkit:protocolvanish")
 }

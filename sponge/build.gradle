@@ -23,14 +23,14 @@ allprojects {
     }
     dependencies {
         compileOnly "org.spongepowered:spongeapi:5.0.0"
-        compile project(":api")
-        compile project(":minecraft")
     }
 }
 
 dependencies {
-    compile project(":sponge:api")
-    compile project(":sponge:sponge5")
-    compile project(":sponge:sponge7")
-    compile project(":sponge:nucleus")
+    api project(":api")
+    implementation project(":minecraft")
+    implementation project(":sponge:api")
+    implementation project(":sponge:sponge5")
+    implementation project(":sponge:sponge7")
+    implementation project(":sponge:nucleus")
 }

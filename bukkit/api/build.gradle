@@ -15,16 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-repositories {
-    maven {
-        url "http://repo.onarandombox.com/content/groups/public/"
-    }
-}
-
 dependencies {
-    compileOnly (group: "com.onarandombox.multiversecore", name: "Multiverse-Core", version: "2.5") {
-        exclude group: "net.milkbowl.vault", module: "VaultAPI"
-        exclude group: "org.mcstats.bukkit", module: "metrics"
-        exclude group: "net.md-5", module: "bungeecord-chat"
-    }
+    api project(":api")
+    api project(":minecraft")
 }
