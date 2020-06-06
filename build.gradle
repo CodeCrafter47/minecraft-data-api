@@ -18,23 +18,8 @@
 group 'de.codecrafter47.data'
 version '1.0.2-SNAPSHOT'
 
-buildscript {
-    dependencies {
-        classpath 'org.hibernate.build.gradle:gradle-maven-publish-auth:2.0.1'
-    }
-    repositories {
-        maven {
-            url "http://repository.jboss.org/nexus/content/groups/public/"
-        }
-        mavenLocal()
-        mavenCentral()
-    }
-}
-
 subprojects {
-    apply plugin: 'java'
-    apply plugin: 'maven-publish'
-    apply plugin: 'maven-publish-auth'
+    apply plugin: 'java-library'
 
     sourceCompatibility = 1.8
 
@@ -50,28 +35,5 @@ subprojects {
 
     task sourceJar(type: Jar) {
         from sourceSets.main.allJava
-    }
-
-    publishing {
-        repositories {
-            maven {
-                name "deployment"
-                url "http://nexus.codecrafter47.dyndns.eu/content/repositories/snapshots/"
-            }
-        }
-
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
-
-                def path2 = path.replace(':', '.')
-                groupId = project(":").group + path2.substring(0, path2.lastIndexOf('.'))
-                version = project(":").version
-
-                artifact sourceJar {
-                    classifier "sources"
-                }
-            }
-        }
     }
 }
