@@ -79,6 +79,11 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
         addProvider(MinecraftData.DisplayName, Player::getDisplayName);
         addProvider(BukkitData.PlayerListName, Player::getPlayerListName);
         addProvider(MinecraftData.World, player -> player.getWorld().getName());
+        addProvider(BukkitData.BukkitPlayerMetadataVanished, player -> {
+            if (player.hasMetadata("vanished") && !player.getMetadata("vanished").isEmpty())
+                return player.getMetadata("vanished").get(0).asBoolean();
+            return false;
+        });
 
         if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
             addProvider(MinecraftData.Economy_Balance, new VaultBalanceProvider(plugin));

@@ -25,6 +25,7 @@ import de.codecrafter47.data.minecraft.api.MinecraftData;
 public class BukkitData implements DataKeyCatalogue {
 
     public final static DataKey<String> PlayerListName = new DataKey<>("bukkit:playerlistname", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<Boolean> BukkitPlayerMetadataVanished = new DataKey<>("bukkit:meta_vanished", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<Boolean> VanishNoPacket_IsVanished = new DataKey<>("bukkit:vanishnopacket:isvanished", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<Integer> PlayerPoints_Points = new DataKey<>("bukkit:playerpoints:points", MinecraftData.SCOPE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<String> Factions_FactionName = new DataKey<>("bukkit:factions:factionname", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
