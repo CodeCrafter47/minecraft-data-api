@@ -66,6 +66,7 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
         addProvider(MinecraftData.Permissions_PermissionGroupWeight, player -> player.getOption("weight").map(Integer::parseInt).orElse(null));
         addProvider(MinecraftData.Permissions_Prefix, player -> player.getOption("prefix").orElse(null));
         addProvider(MinecraftData.Permissions_Suffix, player -> player.getOption("suffix").orElse(null));
+        addProvider(SpongeData.Sponge_IsVanished, player -> player.get(Keys.VANISH).orElse(false));
 
         if (classExists("io.github.nucleuspowered.nucleus.api.NucleusAPI")) {
             addProvider(SpongeData.Nucleus_IsAFK, Nucleus::isAfk);

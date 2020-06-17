@@ -24,6 +24,7 @@ import de.codecrafter47.data.minecraft.api.MinecraftData;
 
 public class SpongeData implements DataKeyCatalogue {
 
+    public final static DataKey<Boolean> Sponge_IsVanished = new DataKey<>("sponge:isvanished", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<Boolean> Nucleus_IsAFK = new DataKey<>("sponge:nucleus:isafk", MinecraftData.SCOPE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<String> Nucleus_Nick = new DataKey<>("sponge:nucleus:nick", MinecraftData.SCOPE_PLAYER, TypeToken.STRING);
 }
