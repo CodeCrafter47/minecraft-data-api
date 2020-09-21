@@ -56,9 +56,9 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
     }
 
     protected void init() {
-        addProvider(MinecraftData.Health, Damageable::getHealth);
+        addProvider(MinecraftData.Health, player -> player.getHealth());
         addProvider(MinecraftData.Level, Player::getLevel);
-        addProvider(MinecraftData.MaxHealth, Player::getMaxHealth);
+        addProvider(MinecraftData.MaxHealth, player -> player.getMaxHealth());
         addProvider(MinecraftData.XP, Player::getExp);
         addProvider(MinecraftData.TotalXP, Player::getTotalExperience);
         addProvider(MinecraftData.PosX, player -> player.getLocation().getX());
