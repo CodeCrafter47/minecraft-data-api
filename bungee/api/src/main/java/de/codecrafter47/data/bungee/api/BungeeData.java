@@ -34,6 +34,7 @@ public class BungeeData implements DataKeyCatalogue {
     public final static DataKey<String> BungeeCord_PrimaryGroup = new DataKey<>("bungeecord:group", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<Integer> BungeeCord_Ping = new DataKey<>("bungeecord:ping", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
     public final static DataKey<Integer> BungeeCord_Rank = new DataKey<>("bungeecord:rank", SCOPE_BUNGEE_PLAYER, TypeToken.INTEGER);
+    public final static DataKey<Boolean> BungeeCord_Permission = new DataKey<>("bungeecord:permission", SCOPE_BUNGEE_PLAYER, TypeToken.BOOLEAN);
     public final static DataKey<String> BungeePerms_PrimaryGroup = new DataKey<>("bungeeperms:group", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> BungeePerms_Prefix = new DataKey<>("bungeeperms:prefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> BungeePerms_DisplayPrefix = new DataKey<>("bungeeperms:displayprefix", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);

@@ -79,6 +79,13 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             Server server = player.getServer();
             return server != null ? server.getInfo().getName() : null;
         });
+        addProvider(BungeeData.BungeeCord_Permission, (player, key) -> {
+            try {
+                return player.hasPermission(key.getParameter());
+            } catch (Throwable ignored) {
+                return null;
+            }
+        });
 
         Plugin p = ProxyServer.getInstance().getPluginManager().getPlugin("BungeePerms");
         if (p != null && !isClassPresent("net.alpenblock.bungeeperms.platform.bungee.BungeePlugin")) {
