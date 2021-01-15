@@ -35,8 +35,22 @@ public class DataCache implements DataHolder {
             cache.put(dataKey, object);
         }
         Set<Runnable> listeners = listenerMap.get(dataKey);
+        AssertionError error = null;
         if (listeners != null) {
-            listeners.forEach(Runnable::run);
+            for (Runnable listener : listeners) {
+                try {
+                    listener.run();
+                } catch (Throwable th) {
+                    if (error == null) {
+                        error = new AssertionError("Failed to run listener");
+                    } else {
+                        error.addSuppressed(th);
+                    }
+                }
+            }
+        }
+        if (error != null) {
+            throw error;
         }
     }
 
