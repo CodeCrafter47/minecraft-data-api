@@ -39,6 +39,10 @@ public class MinecraftData implements DataKeyCatalogue {
     public final static DataKey<Double> Health = new DataKey<>("minecraft:health", SCOPE_PLAYER, TypeToken.DOUBLE);
     public final static DataKey<String> World = new DataKey<>("bukkit:world", SCOPE_PLAYER, TypeToken.STRING);
     public final static DataKey<String> Team = new DataKey<>("minecraft:team", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> TeamColor = new DataKey<>("minecraft:teamcolor", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> TeamDisplayName = new DataKey<>("minecraft:teamdisplayname", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> TeamPrefix = new DataKey<>("minecraft:teamprefix", SCOPE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> TeamSuffix = new DataKey<>("minecraft:teamsuffix", SCOPE_PLAYER, TypeToken.STRING);
     public final static DataKey<Double> PosZ = new DataKey<>("minecraft:posz", SCOPE_PLAYER, TypeToken.DOUBLE);
     public final static DataKey<Double> PosY = new DataKey<>("minecraft:posy", SCOPE_PLAYER, TypeToken.DOUBLE);
     public final static DataKey<Double> PosX = new DataKey<>("minecraft:posx", SCOPE_PLAYER, TypeToken.DOUBLE);

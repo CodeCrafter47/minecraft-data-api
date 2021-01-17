@@ -28,6 +28,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.service.economy.EconomyService;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.util.Optional;
@@ -50,6 +52,11 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
         addProvider(MinecraftData.PosY, player -> player.getLocation().getY());
         addProvider(MinecraftData.PosZ, player -> player.getLocation().getZ());
         addProvider(MinecraftData.Team, player -> player.getScoreboard().getMemberTeam(player.getTeamRepresentation()).map(Team::getName).orElse(null));
+        addProvider(MinecraftData.TeamColor, player -> player.getScoreboard().getMemberTeam(player.getTeamRepresentation())
+                .map(Team::getColor).map(color -> TextSerializers.FORMATTING_CODE.serialize(Text.builder().color(color).toText())).orElse(null));
+        addProvider(MinecraftData.TeamDisplayName, player -> player.getScoreboard().getMemberTeam(player.getTeamRepresentation()).map(Team::getDisplayName).map(TextSerializers.FORMATTING_CODE::serialize).orElse(null));
+        addProvider(MinecraftData.TeamPrefix, player -> player.getScoreboard().getMemberTeam(player.getTeamRepresentation()).map(Team::getPrefix).map(TextSerializers.FORMATTING_CODE::serialize).orElse(null));
+        addProvider(MinecraftData.TeamSuffix, player -> player.getScoreboard().getMemberTeam(player.getTeamRepresentation()).map(Team::getSuffix).map(TextSerializers.FORMATTING_CODE::serialize).orElse(null));
         addProvider(MinecraftData.Permission, (player, key) -> player.hasPermission(key.getParameter()));
 
         addProvider(MinecraftData.DisplayName, player -> TextSerializers.FORMATTING_CODE.serialize(player.getDisplayNameData().displayName().get()));

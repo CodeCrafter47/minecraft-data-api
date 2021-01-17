@@ -68,6 +68,22 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
             Team team = player.getScoreboard().getPlayerTeam(player);
             return team != null ? team.getName() : null;
         });
+        addProvider(MinecraftData.TeamColor, player -> {
+            Team team = player.getScoreboard().getPlayerTeam(player);
+            return team != null ? team.getColor().toString() : null;
+        });
+        addProvider(MinecraftData.TeamDisplayName, player -> {
+            Team team = player.getScoreboard().getPlayerTeam(player);
+            return team != null ? team.getDisplayName() : null;
+        });
+        addProvider(MinecraftData.TeamPrefix, player -> {
+            Team team = player.getScoreboard().getPlayerTeam(player);
+            return team != null ? team.getPrefix() : null;
+        });
+        addProvider(MinecraftData.TeamSuffix, player -> {
+            Team team = player.getScoreboard().getPlayerTeam(player);
+            return team != null ? team.getSuffix() : null;
+        });
         addProvider(MinecraftData.Permission, (player, key) -> {
             try {
                 return player.hasPermission(key.getParameter());

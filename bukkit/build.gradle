@@ -22,7 +22,7 @@ allprojects {
         }
     }
     dependencies {
-        compileOnly (group: 'org.spigotmc', name: 'spigot-api', version: "1.10.2-R0.1-SNAPSHOT") {
+        compileOnly (group: 'org.spigotmc', name: 'spigot-api', version: "1.13.2-R0.1-SNAPSHOT") {
             exclude group: 'net.md-5', module: 'bungeecord-chat'
         }
     }
