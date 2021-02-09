@@ -20,7 +20,7 @@ repositories {
         url "http://repo.drnaylor.co.uk/artifactory/list/minecraft"
     }
     maven {
-        url "http://repo.spongepowered.org/maven"
+        url "https://repo.spongepowered.org/maven"
     }
 }
 dependencies {
