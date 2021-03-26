@@ -24,6 +24,6 @@ repositories {
     }
 }
 dependencies {
-    compileOnly "io.github.nucleuspowered:nucleus-api:1.9.3-S7.1"
+    compileOnly "io.github.nucleuspowered:nucleus-api:2.3.2"
     compileOnly "org.spongepowered:spongeapi:7.0.0"
 }
