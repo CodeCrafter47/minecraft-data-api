@@ -42,7 +42,7 @@ public class DataCache implements DataHolder {
                     listener.run();
                 } catch (Throwable th) {
                     if (error == null) {
-                        error = new AssertionError("Failed to run listener");
+                        error = new AssertionError("Failed to run listener", th);
                     } else {
                         error.addSuppressed(th);
                     }
