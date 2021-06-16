@@ -17,12 +17,12 @@
 
 repositories {
     maven {
-        url "http://dl.bintray.com/tastybento/maven-repo"
+        url "https://repo.codemc.org/repository/maven-public"
     }
 }
 
 dependencies {
-    compileOnly (group: "com.wasteofplastic", name: "askyblock", version: "3.0.5.4") {
+    compileOnly (group: "com.wasteofplastic", name: "askyblock", version: "3.0.9.4") {
         exclude group: 'net.milkbowl.vault', module: 'VaultAPI'
     }
 }

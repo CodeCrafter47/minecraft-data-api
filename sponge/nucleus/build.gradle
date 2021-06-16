@@ -17,7 +17,7 @@
 
 repositories {
     maven {
-        url "http://repo.drnaylor.co.uk/artifactory/list/minecraft"
+        url "https://repo.drnaylor.co.uk/artifactory/list/minecraft"
     }
     maven {
         url "https://repo.spongepowered.org/maven"
