@@ -17,10 +17,10 @@
 
 repositories {
     maven {
-        url "http://nexus.hc.to/content/repositories/pub_releases"
+        url "https://jitpack.io"
     }
 }
 
 dependencies {
-    compileOnly group: "net.milkbowl.vault", name: "VaultAPI", version: "1.6"
+    compileOnly group: "com.github.MilkBowl", name: "VaultAPI", version: "1.7"
 }

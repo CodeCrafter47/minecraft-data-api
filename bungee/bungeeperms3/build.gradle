@@ -17,7 +17,7 @@
 
 repositories {
     maven {
-        url "http://repo.wea-ondara.net/repository/public/"
+        url "https://repo.wea-ondara.net/repository/public/"
     }
 }
 
