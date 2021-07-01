@@ -17,12 +17,16 @@
 
 allprojects {
     repositories {
+        mavenCentral()
         maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
+            url = 'https://nexus.codecrafter47.dyndns.eu/content/repositories/public/'
+        }
+        maven {
+            url = 'https://oss.sonatype.org/content/repositories/snapshots'
         }
     }
     dependencies {
-        compileOnly group: 'net.md-5', name: 'bungeecord-api', version: "1.10-SNAPSHOT"
+        compileOnly group: 'net.md-5', name: 'bungeecord-api', version: "1.15-SNAPSHOT"
     }
 }
 
