@@ -56,3 +56,6 @@ include 'sponge:api'
 include 'sponge:sponge5'
 include 'sponge:sponge7'
 include 'sponge:nucleus'
+include 'velocity'
+include 'velocity:api'
+
