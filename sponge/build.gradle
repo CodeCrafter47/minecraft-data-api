@@ -32,5 +32,4 @@ dependencies {
     implementation project(":sponge:api")
     implementation project(":sponge:sponge5")
     implementation project(":sponge:sponge7")
-    implementation project(":sponge:nucleus")
 }

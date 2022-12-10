@@ -19,7 +19,6 @@ package de.codecrafter47.data.sponge;
 
 import de.codecrafter47.data.minecraft.api.MinecraftData;
 import de.codecrafter47.data.sponge.api.SpongeData;
-import de.codecrafter47.data.sponge.nucleus.Nucleus;
 import de.codecrafter47.data.sponge.sponge5.Sponge5;
 import de.codecrafter47.data.sponge.sponge7.Sponge7;
 import org.slf4j.Logger;
@@ -74,11 +73,6 @@ public class PlayerDataAccess extends AbstractSpongeDataAccess<Player> {
         addProvider(MinecraftData.Permissions_Prefix, player -> player.getOption("prefix").orElse(null));
         addProvider(MinecraftData.Permissions_Suffix, player -> player.getOption("suffix").orElse(null));
         addProvider(SpongeData.Sponge_IsVanished, player -> player.get(Keys.VANISH).orElse(false));
-
-        if (classExists("io.github.nucleuspowered.nucleus.api.NucleusAPI")) {
-            addProvider(SpongeData.Nucleus_IsAFK, Nucleus::isAfk);
-            addProvider(SpongeData.Nucleus_Nick, Nucleus::getNick);
-        }
     }
 
     private static int getAPIMajorVersion(Logger logger) {
