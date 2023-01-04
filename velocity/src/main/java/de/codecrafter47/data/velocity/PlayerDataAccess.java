@@ -51,7 +51,7 @@ public class PlayerDataAccess extends AbstractVelocityDataAccess<Player> {
             }
         });
 
-        if (server.getPluginManager().getPlugin("LuckPerms").isPresent()) {
+        if (server.getPluginManager().getPlugin("luckperms").isPresent()) {
             if (isClassPresent("net.luckperms.api.LuckPerms")) {
                 // API v5.0
                 addProvider(VelocityData.LuckPerms_PrimaryGroup, new LuckPerms5PrimaryGroupProvider());
