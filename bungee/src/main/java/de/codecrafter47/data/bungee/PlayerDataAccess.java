@@ -149,7 +149,10 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
             } else if (isMethodPresent("lu.r3flexi0n.bungeeonlinetime.database.SQL", "getOnlineTime", UUID.class)) {
                 // BungeeOnlineTime 7.0+
                 addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider70());
-            }
+            } 
+        } else if (p != null && isClassPresent("lu.r3flexi0n.bungeeonlinetime.BungeeOnlineTimePlugin")) {
+            // BungeeOnlineTime 8.3+
+            addProvider(BungeeData.BungeeOnlineTime_OnlineTime, new BungeeOnlineTimeOnlineTimeProvider83());
         }
 
         p = ProxyServer.getInstance().getPluginManager().getPlugin("ProtocolSupportBungee");
