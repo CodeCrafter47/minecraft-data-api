@@ -17,12 +17,14 @@
 
 package de.codecrafter47.data.bukkit;
 
+import com.google.common.collect.Sets;
 import de.codecrafter47.data.api.AbstractDataAccess;
 import de.codecrafter47.data.api.DataKey;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ConcurrentModificationException;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +33,8 @@ import java.util.logging.Logger;
 public abstract class AbstractBukkitDataAccess<B> extends AbstractDataAccess<B> {
     protected final Logger logger;
     protected final Plugin plugin;
+    
+    private Set<DataKey<?>> requiresMainThread = Sets.newConcurrentHashSet();
 
     public AbstractBukkitDataAccess(Logger logger, Plugin plugin) {
         this.logger = logger;
@@ -43,15 +47,16 @@ public abstract class AbstractBukkitDataAccess<B> extends AbstractDataAccess<B> 
             return super.get(key, context);
         } catch (Throwable th) {
             if (!Bukkit.isPrimaryThread() && isAsyncOpError(th)) {
-                try {
-                    return Bukkit.getScheduler().callSyncMethod(plugin, () -> get(key, context)).get();
-                } catch (InterruptedException | ExecutionException e) {
-                    logger.log(Level.SEVERE, "Unexpected exception", e);
-                }
+                requiresMainThread.add(key);
+            } else {
+                logger.log(Level.SEVERE, "Unexpected exception", th);
             }
-            logger.log(Level.SEVERE, "Unexpected exception", th);
         }
         return null;
+    }
+    
+    public boolean requiresMainThread(DataKey<?> key) {
+        return requiresMainThread.contains(key);
     }
 
     private boolean isAsyncOpError(Throwable th) {
