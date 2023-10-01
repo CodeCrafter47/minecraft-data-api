@@ -44,6 +44,7 @@ dependencies {
     implementation project(":bungee:bungeeonlinetime55")
     implementation project(":bungee:bungeeonlinetime61")
     implementation project(":bungee:bungeeonlinetime70")
+    implementation project(":bungee:bungeeonlinetime83")
     implementation project(":bungee:protocolsupportbungee")
     implementation project(":bungee:pafclans")
     implementation project(":bungee:proxycore")

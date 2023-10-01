@@ -15,6 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+repositories {
+    maven {
+        url "https://nexus.codecrafter47.de/content/repositories/thirdparty/"
+    }
+}
+
 dependencies {
-    compileOnly group: "me.lucko.luckperms", name: "luckperms-api", version: "4.0"
+    compileOnly group: "lu.r3flexi0n", name: "bungeeonlinetime", version: "8.3"
 }
