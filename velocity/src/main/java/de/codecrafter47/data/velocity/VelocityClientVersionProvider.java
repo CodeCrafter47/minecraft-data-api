@@ -15,16 +15,16 @@
  *     along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.codecrafter47.data.bungee;
+package de.codecrafter47.data.velocity;
 
-import net.md_5.bungee.api.connection.ProxiedPlayer;
+import com.velocitypowered.api.proxy.Player;
 
 import java.util.function.Function;
 
-public class BungeeClientVersionProvider implements Function<ProxiedPlayer, String> {
+public class VelocityClientVersionProvider implements Function<Player, String> {
     @Override
-    public String apply(ProxiedPlayer player) {
-        switch (player.getPendingConnection().getVersion()) {
+    public String apply(Player player) {
+        switch (player.getProtocolVersion().getProtocol()) {
             // todo find some way to automatically update this
             case 764:
                 return "1.20.2";
