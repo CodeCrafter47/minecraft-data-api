@@ -58,6 +58,7 @@ public class BungeeData implements DataKeyCatalogue {
     public final static DataKey<String> ClientVersion = new DataKey<>("minecraft:clientversion", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
     public final static DataKey<Duration> BungeeCord_SessionDuration = new DataKey<>("minecraft:sessionduration", SCOPE_BUNGEE_PLAYER, TypeToken.DURATION);
     public final static DataKey<String> BungeeCord_Server = new DataKey<>("bungeecord:server", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> BungeeCord_Locale = new DataKey<>("bungeecord:locale", SCOPE_BUNGEE_PLAYER, TypeToken.STRING);
 
     public static DataKey<Boolean> permission(String permission) {
         return BungeeCord_Permission.withParameter(permission);
