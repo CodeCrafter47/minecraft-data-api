@@ -27,11 +27,19 @@ allprojects {
         maven {
             url = 'https://repo.papermc.io/repository/maven-public/'
         }
+        maven {
+            url = 'https://nexus.prgm.in/repository/maven-public/'
+        }
     }
     dependencies {
-        compileOnly group: 'com.velocitypowered', name: 'velocity-api', version: "3.2.0-SNAPSHOT"
-        annotationProcessor group: 'com.velocitypowered', name: 'velocity-api', version: "3.2.0-SNAPSHOT"
+        compileOnly group: 'com.velocitypowered', name: 'velocity-api', version: "3.4.0-SNAPSHOT"
+        annotationProcessor group: 'com.velocitypowered', name: 'velocity-api', version: "3.4.0-SNAPSHOT"
     }
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
