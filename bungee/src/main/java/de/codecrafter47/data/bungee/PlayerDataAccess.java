@@ -86,6 +86,7 @@ public class PlayerDataAccess extends AbstractBungeeDataAccess<ProxiedPlayer> {
                 return null;
             }
         });
+        addProvider(BungeeData.BungeeCord_Locale, (player, key) -> player.getLocale().toString());
 
         Plugin p = ProxyServer.getInstance().getPluginManager().getPlugin("BungeePerms");
         if (p != null && !isClassPresent("net.alpenblock.bungeeperms.platform.bungee.BungeePlugin")) {
