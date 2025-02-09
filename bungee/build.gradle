@@ -30,6 +30,12 @@ allprojects {
     }
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 dependencies {
     api project(":api")
     implementation project(":bungee:api")

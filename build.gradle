@@ -18,13 +18,14 @@ subprojects {
     def path2 = path.replace(':', '.')
     group = project(":").group + path2.substring(0, path2.lastIndexOf('.'))
 
-    compileJava {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
     repositories {
         mavenCentral()
+    }
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
     }
 
     dependencies {
