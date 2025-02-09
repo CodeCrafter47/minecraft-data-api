@@ -50,6 +50,7 @@ public class PlayerDataAccess extends AbstractVelocityDataAccess<Player> {
                 return null;
             }
         });
+        addProvider(VelocityData.Velocity_Locale, (player, key) -> player.getEffectiveLocale() != null ? player.getEffectiveLocale().toString() : null);
 
         if (server.getPluginManager().getPlugin("luckperms").isPresent()) {
             if (isClassPresent("net.luckperms.api.LuckPerms")) {

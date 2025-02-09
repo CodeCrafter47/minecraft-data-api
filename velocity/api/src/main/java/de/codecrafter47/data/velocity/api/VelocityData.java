@@ -40,6 +40,7 @@ public class VelocityData implements DataKeyCatalogue {
     public final static DataKey<String> ClientVersion = new DataKey<>("minecraft:clientversion", SCOPE_VELOCITY_PLAYER, TypeToken.STRING);
     public final static DataKey<Duration> Velocity_SessionDuration = new DataKey<>("minecraft:sessionduration", SCOPE_VELOCITY_PLAYER, TypeToken.DURATION);
     public final static DataKey<String> Velocity_Server = new DataKey<>("bungeecord:server", SCOPE_VELOCITY_PLAYER, TypeToken.STRING);
+    public final static DataKey<String> Velocity_Locale = new DataKey<>("bungeecord:locale", SCOPE_VELOCITY_PLAYER, TypeToken.STRING);
 
     public static DataKey<Boolean> permission(String permission) {
         return Velocity_Permission.withParameter(permission);
