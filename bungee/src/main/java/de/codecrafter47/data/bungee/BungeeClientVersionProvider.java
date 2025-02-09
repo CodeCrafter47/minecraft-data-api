@@ -26,6 +26,16 @@ public class BungeeClientVersionProvider implements Function<ProxiedPlayer, Stri
     public String apply(ProxiedPlayer player) {
         switch (player.getPendingConnection().getVersion()) {
             // todo find some way to automatically update this
+            case 769:
+                return "1.21.4";
+            case 768:
+                return "1.21.2";
+            case 767:
+                return "1.21";
+            case 766:
+                return "1.20.5";
+            case 765:
+                return "1.20.3";
             case 764:
                 return "1.20.2";
             case 763:
