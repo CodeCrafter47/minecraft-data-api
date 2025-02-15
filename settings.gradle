@@ -56,3 +56,8 @@ include 'sponge'
 include 'sponge:api'
 include 'sponge:sponge5'
 include 'sponge:sponge7'
+
+include 'velocity'
+include 'velocity:api'
+include 'velocity:luckperms'
+include 'velocity:luckperms5'

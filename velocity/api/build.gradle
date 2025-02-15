@@ -15,12 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }
-}
-
 dependencies {
     api project(":api")
 }

@@ -24,35 +24,33 @@ allprojects {
         maven {
             url = 'https://oss.sonatype.org/content/repositories/snapshots'
         }
+        maven {
+            url = 'https://repo.papermc.io/repository/maven-public/'
+        }
     }
+
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
+
     dependencies {
-        compileOnly group: 'net.md-5', name: 'bungeecord-api', version: "1.15-SNAPSHOT"
+        compileOnly group: 'com.velocitypowered', name: 'velocity-api', version: "3.4.0-SNAPSHOT"
+        annotationProcessor group: 'com.velocitypowered', name: 'velocity-api', version: "3.4.0-SNAPSHOT"
     }
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
 dependencies {
     api project(":api")
-    implementation project(":bungee:api")
-    implementation project(":bungee:bungeeperms2")
-    implementation project(":bungee:bungeeperms3")
-    implementation project(":bungee:luckperms")
-    implementation project(":bungee:luckperms5")
-    implementation project(":bungee:bungeeonlinetime30")
-    implementation project(":bungee:bungeeonlinetime31")
-    implementation project(":bungee:bungeeonlinetime43")
-    implementation project(":bungee:bungeeonlinetime53")
-    implementation project(":bungee:bungeeonlinetime55")
-    implementation project(":bungee:bungeeonlinetime61")
-    implementation project(":bungee:bungeeonlinetime70")
-    implementation project(":bungee:bungeeonlinetime83")
-    implementation project(":bungee:protocolsupportbungee")
-    implementation project(":bungee:pafclans")
-    implementation project(":bungee:proxycore")
-    implementation project(":bungee:premiumvanish")
+    implementation project(":velocity:api")
+    implementation project(":velocity:luckperms")
+    implementation project(":velocity:luckperms5")
 }
