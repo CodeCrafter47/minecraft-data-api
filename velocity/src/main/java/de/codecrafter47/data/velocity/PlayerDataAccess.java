@@ -37,7 +37,7 @@ public class PlayerDataAccess extends AbstractVelocityDataAccess<Player> {
         super(server, plugin, logger);
 
         addProvider(VelocityData.Velocity_DisplayName, Player::getUsername);
-        addProvider(VelocityData.Velocity_Ping, player -> (int) player.getPing());
+        addProvider(VelocityData.Velocity_Ping, player -> (int) (player.getPing() < 0 ? 0 : player.getPing()));
         addProvider(VelocityData.Velocity_SessionDuration, VelocitySessionDurationProvider.getInstance(server, plugin));
         addProvider(VelocityData.Velocity_Server, player -> {
             ServerConnection serverConnection = player.getCurrentServer().orElse(null);
