@@ -34,14 +34,12 @@ import de.codecrafter47.data.bukkit.factions.*;
 import de.codecrafter47.data.bukkit.factionsuuid.*;
 import de.codecrafter47.data.bukkit.multiverse.MultiverseWorldAliasProvider;
 import de.codecrafter47.data.bukkit.playerpoints.PlayerPointsProvider;
-import de.codecrafter47.data.bukkit.protocolvanish.ProtocolVanishIsVanishedProvider;
 import de.codecrafter47.data.bukkit.simpleclans.*;
 import de.codecrafter47.data.bukkit.supervanish.SuperVanishIsVanishedProvider;
 import de.codecrafter47.data.bukkit.vanishnopacket.VanishNoPacketIsVanishedProvider;
 import de.codecrafter47.data.bukkit.vault.*;
 import de.codecrafter47.data.minecraft.api.MinecraftData;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Team;
@@ -188,9 +186,6 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
             }
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("ProtocolVanish")) {
-            addProvider(BukkitData.ProtocolVanish_IsVanished, new ProtocolVanishIsVanishedProvider());
-        }
     }
 
     private static boolean classExists(String name) {

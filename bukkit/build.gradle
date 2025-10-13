@@ -50,5 +50,4 @@ dependencies {
     implementation project(":bukkit:essentials")
     implementation project(":bukkit:askyblock")
     implementation project(":bukkit:cmi")
-    implementation project(":bukkit:protocolvanish")
 }
