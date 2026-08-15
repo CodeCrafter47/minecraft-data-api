@@ -44,6 +44,7 @@ dependencies {
     implementation project(":bukkit:simpleclans")
     implementation project(":bukkit:playerpoints")
     implementation project(":bukkit:multiverse")
+    implementation project(":bukkit:multiverse5")
     implementation project(":bukkit:factionsuuid")
     implementation project(":bukkit:factionsuuid05")
     implementation project(":bukkit:factions")
