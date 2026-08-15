@@ -33,6 +33,7 @@ import de.codecrafter47.data.bukkit.factions.FactionWhereProvider;
 import de.codecrafter47.data.bukkit.factions.*;
 import de.codecrafter47.data.bukkit.factionsuuid.*;
 import de.codecrafter47.data.bukkit.multiverse.MultiverseWorldAliasProvider;
+import de.codecrafter47.data.bukkit.multiverse.MultiverseWorldAliasProvider5;
 import de.codecrafter47.data.bukkit.playerpoints.PlayerPointsProvider;
 import de.codecrafter47.data.bukkit.simpleclans.*;
 import de.codecrafter47.data.bukkit.supervanish.SuperVanishIsVanishedProvider;
@@ -171,7 +172,11 @@ public class PlayerDataAccess extends AbstractBukkitDataAccess<Player> {
         }
 
         if (Bukkit.getPluginManager().getPlugin("Multiverse-Core") != null) {
-            addProvider(BukkitData.Multiverse_WorldAlias, new MultiverseWorldAliasProvider());
+            if (classExists("org.mvplugins.multiverse.core.MultiverseCoreApi")) {
+                addProvider(BukkitData.Multiverse_WorldAlias, new MultiverseWorldAliasProvider5());
+            } else {
+                addProvider(BukkitData.Multiverse_WorldAlias, new MultiverseWorldAliasProvider());
+            }
         }
 
         if (Bukkit.getPluginManager().getPlugin("ASkyBlock") != null) {
